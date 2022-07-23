@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Box } from "@mui/material";
+import HeroBox from "../public/hero-bg.png";
 
 export const SignUpTextField = styled(TextField)({
   width: "100%",
@@ -8,3 +9,4 @@ export const SignUpTextField = styled(TextField)({
 export const SignUpButton = styled(Button)({
   marginTop: 20,
 });
+

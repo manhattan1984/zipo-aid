@@ -83,8 +83,8 @@ const Register = () => {
 
         <Box m={4}>
           <Typography m variant="caption" textAlign="center" color="GrayText">
-            By clicking the 'Register account' button you agree to our Privacy
-            Policy and Terms of Service.{" "}
+            By clicking the &apos;Register account&lsquo; button you agree to our Privacy
+            Policy and Terms of Service.
           </Typography>
         </Box>
 

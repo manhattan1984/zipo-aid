@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import SignUpAppbar from "../components/SignUpAppbar";
 import { SignUpButton, SignUpTextField } from "../styles/styles";
 
-const signin = () => {
+const Signin = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   const { logIn } = useAuth();
@@ -40,7 +40,7 @@ const signin = () => {
           <Typography variant="h4">Log In</Typography>
           <Box display="flex" justifyContent="center">
             <Typography variant="subtitle1" mr>
-              Don't have an account?
+              Don&lsquo;t have an account?
             </Typography>
             <Typography variant="subtitle1">Register now for free</Typography>
           </Box>
@@ -89,4 +89,4 @@ const signin = () => {
   );
 };
 
-export default signin;
+export default Signin;

@@ -28,17 +28,17 @@ function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
 }
 
+export const PAGES = [
+  { name: "Pro Trading", link: "protrading" },
+  { name: "Account", link: "account" },
+  { name: "Deposit", link: "deposit" },
+  { name: "Withdrawal", link: "withdrawal" },
+  { name: "F.A.Q", link: "faq" },
+];
 const Profile = () => {
   const router = useRouter();
   const [error, setError] = useState("");
   const { currentUser, logOut, usdBalance } = useAuth();
-  const pages = [
-    { page: "Pro Trading", link: "protrading" },
-    { page: "Account", link: "account" },
-    { page: "Deposit", link: "deposit" },
-    { page: "Withdrawal", link: "withdrawal" },
-    { page: "F.A.Q", link: "faq" },
-  ];
 
   async function handleLogOut() {
     setError("");
@@ -60,9 +60,8 @@ const Profile = () => {
 
   return (
     <>
-      <MyAppBar links={pages}>
-        <ProfileMenu links={pages} toggleMenu={toggleMenu} />
-      </MyAppBar>
+      <MyAppBar links={PAGES} />
+
       <Container>
         <Typography variant="h3" my={4}>
           Dashboard
@@ -139,7 +138,7 @@ const Profile = () => {
             <Box mx={2}>
               <Typography variant="body">Transaction History</Typography>
               <Typography variant="subtitle2">
-                Every deposit and withdrawal you've made at Zipo-Aid.{" "}
+                Every deposit and withdrawal you&lsquo;ve made at Zipo-Aid.
               </Typography>
             </Box>
             <Button>View</Button>
