@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useState } from "react";
-import Logo from "../public/zipo-aid.svg";
+import Logo from "../public/zipo-aid.png";
 import Image from "next/image";
 const LandingAppBar = ({ pages }) => {
   const [menuOpen, setMenuOpen] = useState(false);

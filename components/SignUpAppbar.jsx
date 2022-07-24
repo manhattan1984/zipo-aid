@@ -2,7 +2,7 @@ import { Button, Container, Grid, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
-import logo from "../public/zipo-aid.svg";
+import logo from "../public/zipo-aid.png";
 
 const SignUpAppbar = ({ text, onClick }) => {
   const router = useRouter();
@@ -11,14 +11,16 @@ const SignUpAppbar = ({ text, onClick }) => {
       <Toolbar disableGutters>
         <Grid container>
           <Grid item xs={6}>
-            <Image
+            {/* <Image
               src={logo}
               alt="logo"
               layout="fixed"
               width={150}
               height={50}
-            />
-            {/* <Typography>Zipo Aid</Typography> */}
+            /> */}
+            <Typography variant="h5" color="primary.main">
+              {/* Zipo Aid */}
+            </Typography>
           </Grid>
           <Grid item xs={6} textAlign="end" alignSelf="center">
             {/* <img src={Logo} className="appbar-logo" /> */}

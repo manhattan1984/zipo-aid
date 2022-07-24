@@ -28,13 +28,7 @@ function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
 }
 
-export const PAGES = [
-  { name: "Pro Trading", link: "protrading" },
-  { name: "Account", link: "account" },
-  { name: "Deposit", link: "deposit" },
-  { name: "Withdrawal", link: "withdrawal" },
-  { name: "F.A.Q", link: "faq" },
-];
+
 const Profile = () => {
   const router = useRouter();
   const [error, setError] = useState("");
@@ -60,12 +54,51 @@ const Profile = () => {
 
   return (
     <>
-      <MyAppBar links={PAGES} />
+     
 
       <Container>
-        <Typography variant="h3" my={4}>
-          Dashboard
+        <Typography variant="h6" my={2}>
+          Hi, Welcome User
         </Typography>
+
+        {/* Balances */}
+
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6} lg={3}>
+            <Paper>
+              <Box pb={4} pt={2} m>
+                <Typography mb={2}>Available Balance</Typography>
+                <Typography variant="h5">$0.00</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <Paper>
+              <Box pb={4} pt={2} m>
+                <Typography mb={2}>Active Investment</Typography>
+                <Typography variant="h5">N/A</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <Paper>
+              <Box pb={4} pt={2} m>
+                <Typography mb={2}>Total Deposit</Typography>
+                <Typography variant="h5">N/A</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={3}>
+            <Paper>
+              <Box pb={4} pt={2} m>
+                <Typography mb={2}>Total Earned</Typography>
+                <Typography variant="h5">N/A</Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
+
+        {/* End Balances */}
 
         <Box width="100%">
           <Grid container spacing={2}>
@@ -102,7 +135,7 @@ const Profile = () => {
           </Grid>
         </Box>
 
-        <Typography variant="h6" mt={3}>
+        {/* <Typography variant="h6" mt={3}>
           Portfolio
         </Typography>
         <Paper>
@@ -115,9 +148,9 @@ const Profile = () => {
               Go To Pro Trading
             </Button>
           </Box>
-        </Paper>
+        </Paper> */}
 
-        <Typography my={2} variant="h6">
+        {/* <Typography my={2} variant="h6">
           Watchlist
         </Typography>
         <Box>
@@ -129,9 +162,9 @@ const Profile = () => {
           </Typography>
 
           <Button fullWidth>Explore more cryptocurrencies</Button>
-        </Box>
+        </Box> */}
 
-        <Typography my={2}>Your Activity</Typography>
+        {/* <Typography my={2}>Your Activity</Typography>
         <Paper>
           <Box display="flex" justifyContent="space-between" p={2}>
             <SvgIcon component={PendingActions} fontSize="large" />
@@ -143,7 +176,7 @@ const Profile = () => {
             </Box>
             <Button>View</Button>
           </Box>
-        </Paper>
+        </Paper> */}
         <Paper>
           <Box my={2} p={3}>
             <Typography my={2}>Profile</Typography>

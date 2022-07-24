@@ -17,7 +17,7 @@ import React, { useState } from "react";
 // import Menu, { LINKS } from "./Menu";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Logo from "../public/zipo-aid.svg";
+import Logo from "../public/zipo-aid.png";
 import ProfileMenu from "./ProfileMenu";
 
 function setActive(router, link) {
@@ -48,7 +48,12 @@ const MyAppBar = ({ links }) => {
           <Grid container>
             <Grid item xs={6} md={4}>
               <Link href="/" passHref>
-                <Image src={Logo} height={50} width={150} />
+                {/* <Box>
+                  <Image src={Logo} layout="responsive" height={300} />
+                </Box> */}
+                <Typography color="primary.main" variant="h5">
+                  Zipo-AID
+                </Typography>
               </Link>
             </Grid>
             {/* Mobile */}
@@ -88,7 +93,10 @@ const MyAppBar = ({ links }) => {
             <Grid container justifyContent="space-between">
               <Grid item>
                 <Link href="/" passHref>
-                  <Image src={Logo} height={50} width={150} />
+                  {/* <Image src={Logo} height={50} width={150} /> */}
+                  <Typography variant="h5" color="primary.main">
+                    Zipo-AID
+                  </Typography>
                 </Link>
               </Grid>
 

@@ -10,7 +10,6 @@ import Head from "next/head";
 import Image from "next/image";
 import MyAppBar from "../components/MyAppBar";
 import styles from "../styles/Home.module.css";
-import { PAGES } from "./profile";
 import Ease from "../public/ease.webp";
 import Bank from "../public/bank.webp";
 import Secure from "../public/secure.webp";
@@ -22,8 +21,6 @@ export default function Home() {
   const router = useRouter();
   return (
     <>
-      <MyAppBar links={PAGES} />
-
       {/* <Container> */}
       <Box className={styles.hero}>
         <Grid container>
@@ -54,12 +51,12 @@ export default function Home() {
             </Button>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Box className={styles.container}>
+            {/* <Box className={styles.container}>
               <img src="/phone.png" className={styles.phone} />
               <video playsInline className={styles.video}>
                 <source src="/zipo.mp4" type="video/mp4" />
               </video>
-            </Box>
+            </Box> */}
           </Grid>
         </Grid>
       </Box>
@@ -103,7 +100,7 @@ export default function Home() {
 
       <Container>
         <Box display={{ md: "flex" }}>
-          <Image src={Coins} />
+          {/* <Image src={Coins} /> */}
           <Box textAlign="left">
             <Typography variant="h4">
               Unlimited access with our web mobile wallet.
@@ -125,7 +122,7 @@ export default function Home() {
       </Container>
 
       <Box display={{ md: "flex" }} sx={{ background: "#2a2d2f" }} my={3}>
-        <Image src={Signals} />
+        {/* <Image src={Signals} /> */}
 
         <Container>
           <Box color="white">
