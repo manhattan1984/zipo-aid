@@ -38,7 +38,6 @@ const Deposit = () => {
               label="CryptoCurrencies"
               inputRef={crypto}
               variant="standard"
-              label="Cryptocurrency"
               fullWidth
             >
               {wallets.map(({ name }, index) => (
