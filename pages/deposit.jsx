@@ -41,8 +41,10 @@ const Deposit = () => {
               label="Cryptocurrency"
               fullWidth
             >
-              {wallets.map(({ name }) => (
-                <MenuItem value={name}>{name}</MenuItem>
+              {wallets.map(({ name }, index) => (
+                <MenuItem key={index} value={name}>
+                  {name}
+                </MenuItem>
               ))}
             </TextField>
             <TextField
