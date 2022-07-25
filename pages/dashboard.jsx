@@ -1,11 +1,18 @@
 import { Grid, Paper, Box, Typography, Container } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
+  const { currentUser, usdBalance, getBalances } = useAuth();
+
+  useEffect(() => {
+    getBalances();
+  }, []);
+  
   return (
     <Container>
       <Typography variant="h6" my={2}>
-        Welcome, User
+        Welcome, {currentUser.email}
       </Typography>
 
       <Grid container spacing={2} mb={3}>
@@ -17,7 +24,7 @@ const Dashboard = () => {
           >
             <Box color="white" width="100%" pb={4} pt={2} m>
               <Typography mb={2}>Available Balance</Typography>
-              <Typography variant="h5">$0.00</Typography>
+              <Typography variant="h5">${usdBalance}</Typography>
             </Box>
           </Paper>
         </Grid>

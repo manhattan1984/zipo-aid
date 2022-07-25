@@ -66,43 +66,41 @@ export function addUserToDatabase(email, password, uid) {
 }
 
 export function getUserDetails(uid) {
-    const docRef = doc(db, "users", uid);
-  
-    return getDoc(docRef);
-  }
+  const docRef = doc(db, "users", uid);
 
-// export function changeUserPassword(uid, password) {
-//   const userRef = doc(db, "users", uid);
+  return getDoc(docRef);
+}
 
-//   return updateDoc(userRef, {
-//     password,
-//   });
-// }
+export function changeUserPassword(uid, password) {
+  const userRef = doc(db, "users", uid);
 
+  return updateDoc(userRef, {
+    password,
+  });
+}
 
+export function addInvesmentToDatabase(uid, investmentPlan) {
+  const userRef = doc(db, "users", uid);
 
-// export function addInvesmentToDatabase(uid, investmentPlan) {
-//   const userRef = doc(db, "users", uid);
+  const date = new Date().toLocaleDateString();
 
-//   const date = new Date().toLocaleDateString();
+  return updateDoc(userRef, {
+    investmentPlans: arrayUnion({ investmentPlan, date, status: "Pending" }),
+  });
+}
 
-//   return updateDoc(userRef, {
-//     investmentPlans: arrayUnion({ investmentPlan, date, status: "Pending" }),
-//   });
-// }
+export function addWithdrawalToDatabase(uid, amount, currency, address) {
+  const userRef = doc(db, "users", uid);
 
-// export function addWithdrawalToDatabase(uid, amount, currency, address) {
-//   const userRef = doc(db, "users", uid);
+  const date = new Date().toLocaleDateString();
 
-//   const date = new Date().toLocaleDateString();
-
-//   return updateDoc(userRef, {
-//     withdrawals: arrayUnion({
-//       currency,
-//       amount,
-//       address,
-//       date,
-//       status: "Pending",
-//     }),
-//   });
-// }
+  return updateDoc(userRef, {
+    withdrawals: arrayUnion({
+      currency,
+      amount,
+      address,
+      date,
+      status: "Pending",
+    }),
+  });
+}

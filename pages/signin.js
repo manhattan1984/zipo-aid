@@ -28,7 +28,7 @@ const Signin = () => {
       );
       correct
         ? router.push("/profile")
-        : enqueueSnackbar("Invalid Email or Password", { variant: "error" });
+        : enqueueSnackbar("Invalid Email or Password", { variant: "error" })``;
     } catch (error) {
       setError("Invalid username or password");
       console.log(error);

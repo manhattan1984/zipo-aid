@@ -1,8 +1,17 @@
-import { Telegram } from "@mui/icons-material";
-import { Box, Typography, Grid, Divider, IconButton } from "@mui/material";
+import { Email, Telegram } from "@mui/icons-material";
+import {
+  Box,
+  Typography,
+  Grid,
+  Divider,
+  IconButton,
+  SvgIcon,
+} from "@mui/material";
+import { useRouter } from "next/router";
 import React from "react";
 
 const Footer = () => {
+  const router = useRouter();
   return (
     <Box
       color="white"
@@ -18,7 +27,14 @@ const Footer = () => {
             About
           </Typography>
 
-          <Typography variant="body2">About Us</Typography>
+          <Typography
+            variant="body2"
+            onClick={() => {
+              router.push("/about");
+            }}
+          >
+            About Us
+          </Typography>
           <Typography variant="body2" my>
             Contact Us
           </Typography>
@@ -40,6 +56,12 @@ const Footer = () => {
           <IconButton>
             <Telegram color="primary" />
           </IconButton>
+          <Box display="flex" ml>
+            <SvgIcon component={Email} color="primary"/>
+            <Typography ml variant="caption">
+              ZipoAidInvestmentz@gmail.com
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
       <Divider />

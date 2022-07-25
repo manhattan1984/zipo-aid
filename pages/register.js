@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthContext";
 import SignUpAppbar from "../components/SignUpAppbar";
 import { SignUpTextField, SignUpButton } from "../styles/styles";
+import { useSnackbar } from "notistack";
 
 const Register = () => {
   const emailRef = useRef();
@@ -14,19 +15,29 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      return setError("Passwords do not match");
+      enqueueSnackbar("Passwords do not match");
+    }
+
+    if (!(usernameRef.current.value || emailRef.current.value)) {
+      enqueueSnackbar("Please Complete the form");
     }
 
     try {
       setError("");
       setLoading(true);
-      await signUp(emailRef.current.value, passwordRef.current.value);
-      router.push("/profile");
+      const correct = await signUp(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      correct
+        ? router.push("/profile")
+        : enqueueSnackbar("Please Fill the Form correctly");
     } catch (error) {
       setError("Failed to create an account");
       console.log(error);
@@ -54,16 +65,9 @@ const Register = () => {
           <SignUpTextField
             variant="standard"
             fullWidth
+            type="email"
             label="Enter your email"
             inputRef={emailRef}
-            sx={{ marginRight: 2 }}
-          />
-
-          <SignUpTextField
-            variant="standard"
-            fullWidth
-            label="Enter Username"
-            inputRef={usernameRef}
           />
         </Box>
 
@@ -71,6 +75,7 @@ const Register = () => {
           variant="standard"
           fullWidth
           label="Enter Password"
+          type="password"
           inputRef={passwordRef}
         />
 
@@ -78,13 +83,14 @@ const Register = () => {
           variant="standard"
           fullWidth
           label="Confirm Password"
+          type="password"
           inputRef={confirmPasswordRef}
         />
 
         <Box m={4}>
           <Typography m variant="caption" textAlign="center" color="GrayText">
-            By clicking the &apos;Register account&lsquo; button you agree to our Privacy
-            Policy and Terms of Service.
+            By clicking the &apos;Register account&lsquo; button you agree to
+            our Privacy Policy and Terms of Service.
           </Typography>
         </Box>
 

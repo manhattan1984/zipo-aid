@@ -3,14 +3,14 @@ import React, { createContext, useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import {
-  //   addInvesmentToDatabase,
+  addInvesmentToDatabase,
   addUserToDatabase,
   auth,
-  //   changeUserPassword,
+  changeUserPassword,
   firebaseLogIn,
   firebaseLogOut,
   firebaseSignUp,
-  //   addWithdrawalToDatabase,
+  addWithdrawalToDatabase,
   getUserDetails,
 } from "../backend/firebase";
 
@@ -24,8 +24,8 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [usdBalance, setUsdBalance] = useState(0);
-  //   const [investmentHistory, setInvestmentHistory] = useState([]);
-  //   const [withdrawals, setWithdrawals] = useState([]);
+    const [investmentHistory, setInvestmentHistory] = useState([]);
+    const [withdrawals, setWithdrawals] = useState([]);
 
   function getData(docSnap) {
     return docSnap.data();
@@ -40,9 +40,11 @@ export function AuthProvider({ children }) {
       const userCredential = await firebaseSignUp(email, password);
       await addUserToDatabase(email, password, userCredential.user.uid);
       setCurrentUser(userCredential.user);
+      return true;
     } catch (error) {
       console.log(error);
     }
+    return false;
   }
 
   async function logIn(email, password) {
@@ -90,56 +92,56 @@ export function AuthProvider({ children }) {
     }
   }
 
-  //   async function changePassword(newPassword) {
-  //     try {
-  //       await changeUserPassword(getUid(), newPassword);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+  async function changePassword(newPassword) {
+    try {
+      await changeUserPassword(getUid(), newPassword);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   async function getInvestmentsHistory() {
-  //     try {
-  //       const docSnap = await getUserDetails(getUid());
-  //       if (docSnap.exists()) {
-  //         setInvestmentHistory(getData(docSnap).investmentPlans);
-  //       } else {
-  //         console.log("Doc Not Found");
-  //       }
-  //       // log
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+  async function getInvestmentsHistory() {
+    try {
+      const docSnap = await getUserDetails(getUid());
+      if (docSnap.exists()) {
+        setInvestmentHistory(getData(docSnap).investmentPlans);
+      } else {
+        console.log("Doc Not Found");
+      }
+      // log
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   async function addInvestment(investmentPlan) {
-  //     try {
-  //       await addInvesmentToDatabase(getUid(), investmentPlan);
-  //       const { enqueueSnackbar } = useSnackbar();
-  //       enqueueSnackbar("Investment Added Successfully", { variant: "success" });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+  async function addInvestment(investmentPlan) {
+    try {
+      await addInvesmentToDatabase(getUid(), investmentPlan);
+      const { enqueueSnackbar } = useSnackbar();
+      enqueueSnackbar("Investment Added Successfully", { variant: "success" });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   async function getWithdrawals() {
-  //     try {
-  //       const docSnap = await getUserDetails(getUid());
-  //       if (docSnap.exists()) {
-  //         setWithdrawals(getData(docSnap).withdrawals);
-  //       } else {
-  //         console.log("Doc Not Found");
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
+  async function getWithdrawals() {
+    try {
+      const docSnap = await getUserDetails(getUid());
+      if (docSnap.exists()) {
+        setWithdrawals(getData(docSnap).withdrawals);
+      } else {
+        console.log("Doc Not Found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-  //   async function addWithdrawal(amount, currency, address) {
-  //     try {
-  //       await addWithdrawalToDatabase(getUid(), amount, currency, address);
-  //     } catch (error) {}
-  //   }
+  async function addWithdrawal(amount, currency, address) {
+    try {
+      await addWithdrawalToDatabase(getUid(), amount, currency, address);
+    } catch (error) {}
+  }
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -157,13 +159,13 @@ export function AuthProvider({ children }) {
     logOut,
     getBalances,
     usdBalance,
-    // changePassword,
-    // addInvestment,
-    // getInvestmentsHistory,
-    // investmentHistory,
-    // withdrawals,
-    // getWithdrawals,
-    // addWithdrawal,
+    changePassword,
+    addInvestment,
+    getInvestmentsHistory,
+    investmentHistory,
+    withdrawals,
+    getWithdrawals,
+    addWithdrawal,
     getAuthorized,
   };
 

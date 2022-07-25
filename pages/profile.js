@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import MyAppBar from "../components/MyAppBar";
 import {
@@ -30,7 +30,7 @@ function setActive(router, link) {
 const Profile = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const { currentUser, logOut, usdBalance } = useAuth();
+  const { currentUser, logOut, usdBalance, getBalances } = useAuth();
 
   async function handleLogOut() {
     setError("");
@@ -44,18 +44,30 @@ const Profile = () => {
     }
   }
 
+  function displayWelcome() {
+    try {
+      return (
+        <Typography variant="h6" my={2}>
+          Hi, Welcome {currentUser.email}
+        </Typography>
+      );
+    } catch (e) {}
+  }
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    getBalances();
+  }, []);
+
   return (
     <>
       <Container>
-        <Typography variant="h6" my={2}>
-          Hi, Welcome User
-        </Typography>
+        {displayWelcome()}
 
         <Box width="100%" my={3}>
           <Grid container spacing={2}>
@@ -129,14 +141,14 @@ const Profile = () => {
             <Box display="flex">
               <Box mx={2}>
                 <Avatar>Z</Avatar>
-                <Typography my={2}>$0</Typography>
+                <Typography my={2}>${usdBalance}</Typography>
               </Box>
               <Box>
                 <Box>
                   <Typography mb={1} color="GrayText" variant="subtitle2">
                     Account:
                   </Typography>
-                  <Typography>zipoaid</Typography>
+                  <Typography>{currentUser.email}</Typography>
                 </Box>
                 <Box my={1}>
                   <Typography color="GrayText" variant="subtitle2">
@@ -161,7 +173,7 @@ const Profile = () => {
             </Box>
             <Box>
               <Button>Settings</Button>
-              <Button>Logout</Button>
+              <Button onClick={handleLogOut}>Logout</Button>
             </Box>
           </Box>
         </Paper>
