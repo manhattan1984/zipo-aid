@@ -18,7 +18,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Logo from "../public/zipo-aid.png";
-import ProfileMenu from "./ProfileMenu";
+import { useAuth } from "../context/AuthContext";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
@@ -34,13 +34,35 @@ function MenuDrawer({ children, open, toggleMenu }) {
   );
 }
 
-const MyAppBar = ({ links }) => {
+export const authPages = [
+  { name: "Dashboard", link: "dashboard" },
+  { name: "Invest Now", link: "deposit" },
+  {name: "Investment History", link: "investments"},
+  { name: "Withdraw Fund", link: "withdrawal" },
+  
+  { name: "Pro Trading", link: "protrading" },
+
+  { name: "Profile", link: "profile" },
+];
+
+const pages = [
+  { name: "Sign In", link: "signin" },
+  { name: "Register", link: "register" },
+];
+
+const MyAppBar = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { currentUser } = useAuth();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  let links;
+
+  currentUser ? (links = authPages) : (links = pages);
+
   return (
     <>
       <AppBar position="sticky" sx={{ bgcolor: "white" }}>

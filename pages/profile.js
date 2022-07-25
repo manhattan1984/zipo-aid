@@ -11,9 +11,7 @@ import {
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-import LandingAppBar from "../components/LandingAppBar";
 import MyAppBar from "../components/MyAppBar";
-import ProfileMenu, { PROFILE_LINKS } from "../components/ProfileMenu";
 import {
   Cancel,
   CheckCircle,
@@ -78,7 +76,14 @@ const Profile = () => {
               <Paper>
                 <Box display="flex" justifyContent="space-between" p={3}>
                   <Typography>2. Enter The Market</Typography>
-                  <Button size="small">Make a Deposit</Button>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      router.push("/deposit");
+                    }}
+                  >
+                    Make a Deposit
+                  </Button>
                 </Box>
               </Paper>
             </Grid>
@@ -87,7 +92,14 @@ const Profile = () => {
               <Paper>
                 <Box p={3} display="flex" justifyContent="space-between">
                   <Typography>3. Start Pro Trading</Typography>
-                  <Button size="small">Pro Trading</Button>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      router.push("/protrading");
+                    }}
+                  >
+                    Pro Trading
+                  </Button>
                 </Box>
               </Paper>
             </Grid>

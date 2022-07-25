@@ -49,9 +49,11 @@ export function AuthProvider({ children }) {
     try {
       const userCredential = await firebaseLogIn(email, password);
       setCurrentUser(userCredential.user);
+      return true;
     } catch (error) {
       console.log(error);
     }
+    return false;
   }
 
   async function logOut() {

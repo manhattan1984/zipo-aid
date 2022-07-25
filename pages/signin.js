@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import SignUpAppbar from "../components/SignUpAppbar";
 import { SignUpButton, SignUpTextField } from "../styles/styles";
+import { useSnackbar } from "notistack";
 
 const Signin = () => {
   const emailRef = useRef();
@@ -11,7 +12,9 @@ const Signin = () => {
   const { logIn } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [correct, setCorrect] = useState();
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,10 +22,15 @@ const Signin = () => {
     try {
       setError("");
       setLoading(true);
-      await logIn(emailRef.current.value, passwordRef.current.value);
-      router.push("/profile");
+      const correct = await logIn(
+        emailRef.current.value,
+        passwordRef.current.value
+      );
+      correct
+        ? router.push("/profile")
+        : enqueueSnackbar("Invalid Email or Password", { variant: "error" });
     } catch (error) {
-      setError("Failed to sign in");
+      setError("Invalid username or password");
       console.log(error);
     }
     setLoading(false);
@@ -67,6 +75,8 @@ const Signin = () => {
             of Service apply.{" "}
           </Typography>
         </Box>
+
+        {true && <Typography color="red">{error}</Typography>}
 
         <SignUpButton
           fullWidth
