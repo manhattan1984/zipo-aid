@@ -23,8 +23,8 @@ const Deposit = () => {
     { name: "Litecoin", address: "xxxl" },
   ];
   return (
-    <>
-      <Typography variant="h4">Deposit</Typography>
+    <Container sx={{height: "65vh"}}>
+      <Typography variant="h4" my={3}>Deposit</Typography>
 
       <Paper>
         <Box m pb={10} pt={2}>
@@ -35,7 +35,7 @@ const Deposit = () => {
           <Box m my={2}>
             <TextField
               select
-              label="CryptoCurrencies"
+              label="Cryptocurrency"
               inputRef={crypto}
               variant="standard"
               fullWidth
@@ -46,6 +46,7 @@ const Deposit = () => {
                 </MenuItem>
               ))}
             </TextField>
+           
             <TextField
               inputRef={amount}
               variant="standard"
@@ -82,7 +83,7 @@ const Deposit = () => {
           ) : null}
         </Box>
       </Paper>
-    </>
+    </Container>
   );
 };
 

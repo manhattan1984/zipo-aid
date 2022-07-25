@@ -16,6 +16,11 @@ import Secure from "../public/secure.webp";
 import Coins from "../public/coins.avif";
 import Signals from "../public/signals.avif";
 import { useRouter } from "next/router";
+import InvestmentPlans from "../components/InvestmentPlans";
+import MarketWatch from "../public/marketwatch.svg";
+import Reuters from "../public/reuters.svg";
+import TheGuardian from "../public/theguardian.svg";
+import Bloomberg from "../public/bloomberg.svg";
 
 export default function Home() {
   const router = useRouter();
@@ -24,7 +29,7 @@ export default function Home() {
       {/* <Container> */}
       <Box className={styles.hero}>
         <Grid container>
-          <Grid item xs={12} md={6} color="white" p={3}>
+          <Grid item xs={12} md={6} color="white" m={2}>
             <Typography variant="h5">Buy & trade on the</Typography>
             <Typography
               variant="h5"
@@ -37,8 +42,11 @@ export default function Home() {
             </Typography>
 
             <Typography variant="body">
-              Zipo-Aid makes trading easy, fast & reliable. With 24/7 support,
-              staking and bank-grade security & insurance. Since 2018.{" "}
+              Zipo Aid Investment Trader provides reliable, consistent and
+              profitable financial assistance to our clients around the world.
+              Investments in our trading platforms are securely secured and
+              managed only by our experienced traders to ensure better risk
+              management and profitable trading.
             </Typography>
 
             <Button
@@ -98,15 +106,18 @@ export default function Home() {
         </Box>
       </Box>
 
+      <InvestmentPlans>
+        <Typography variant="h6">ZIPO AID INVESTMENT PLANS</Typography>
+      </InvestmentPlans>
+
       <Container>
-        <Box display={{ md: "flex" }}>
+        <Box display={{ md: "flex" }} my={4}>
           {/* <Image src={Coins} /> */}
           <Box textAlign="left">
             <Typography variant="h4">
               Unlimited access with our web mobile wallet.
             </Typography>
-            <Divider />
-            <Typography variant="h6" my={4}>
+            <Typography variant="h6" my={2}>
               ADVANCED TOOLS PACKED IN AN INTUITIVE INTERFACE
             </Typography>
             <Typography color="GrayText" mb={3}>
@@ -116,17 +127,39 @@ export default function Home() {
               started.
             </Typography>
 
-            <Button>Register Account</Button>
+            <Button
+              onClick={() => {
+                router.push("/register");
+              }}
+            >
+              Register Account
+            </Button>
           </Box>
         </Box>
       </Container>
 
-      <Box display={{ md: "flex" }} sx={{ background: "#2a2d2f" }} my={3}>
+      <Box mx={2} my={2}>
+        <Typography variant="h6" color="GrayText">
+          As Seen On
+        </Typography>
+        <Box
+          display="flex"
+          justifyContent="space-around"
+          sx={{ flexWrap: "wrap" }}
+        >
+          <Image src={Reuters} />
+          <Image src={MarketWatch} />
+          <Image src={Bloomberg} />
+          <Image src={TheGuardian} />
+        </Box>
+      </Box>
+
+      <Box display={{ md: "flex" }} sx={{ background: "#2a2d2f" }}>
         {/* <Image src={Signals} /> */}
 
         <Container>
           <Box color="white">
-            <Typography variant="h4" color="primary.main" my={3}>
+            <Typography variant="h4" color="primary.main" my={3} pt>
               Advanced trading tools.
             </Typography>
 
@@ -149,7 +182,7 @@ export default function Home() {
               our WebSocket for real-time data streaming.{" "}
             </Typography>
 
-            <Typography variant="h4" my={3}>
+            <Typography variant="h6" my={3}>
               CONSTANT SUPPORT
             </Typography>
 
@@ -160,7 +193,13 @@ export default function Home() {
 
             <Box display="flex" my={3} pb={3}>
               <Button>FAQ</Button>
-              <Button>Get Started</Button>
+              <Button
+                onClick={() => {
+                  router.push("/register");
+                }}
+              >
+                Get Started
+              </Button>
             </Box>
           </Box>
         </Container>

@@ -94,8 +94,8 @@ const MyAppBar = ({ links }) => {
               <Grid item>
                 <Link href="/" passHref>
                   {/* <Image src={Logo} height={50} width={150} /> */}
-                  <Typography variant="h5" color="primary.main">
-                    Zipo-AID
+                  <Typography variant="h3" color="primary.main">
+                    Zipo Aid
                   </Typography>
                 </Link>
               </Grid>
