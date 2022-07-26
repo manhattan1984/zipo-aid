@@ -11,11 +11,23 @@ const DEPOSIT_FORM_ENDPOINT =
 
 const Invest = () => {
   const wallets = [
-    { name: "Bitcoin", address: "bc1qg2c9rmuy4uyzvlpevnel0k9mlvnnr0gs0z8wud" },
-    { name: "Ethereum", address: "0xE4Dc81990cD63e00322F52897aF08AA13767C381" },
+    { name: "Bitcoin", address: "bc1q2wv5g8pndyxk6t4uaeqnmth9gf8uns2a4wwwmd" },
+    { name: "Ethereum", address: "0x2DCD8d38c0De3e9841D86BC15Cc90A1D4FdC8D99" },
+    {
+      name: "XRP",
+      address: "rwAL3ZNtMN3PjYHgLYgwvJs67KqAVjBsqB",
+    },
+    {
+      name: "Litecoin",
+      address: "ltc1q77axw5qhhn0lala6u36c78vypw5ssxvymzyg6z",
+    },
     {
       name: "Bitcoin Cash",
-      address: "qqwj2n7j272tsjpg8f4z343rvpr33f2m6yf5qjauqe",
+      address: "qpm67pwa8egfug3s0uh03n0uje972xfjdyvn0766pc",
+    },
+    {
+      name: "Solana",
+      address: "eYNPJUg82A2XaasHs6T9goCoeGq3DVCBV6oz5pxYaq2",
     },
   ];
   const router = useRouter();
