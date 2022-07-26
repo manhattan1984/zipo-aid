@@ -1,32 +1,83 @@
 import { CloudCircleSharp } from "@mui/icons-material";
-import { Box, Paper, SvgIcon, Typography } from "@mui/material";
-import React from "react";
+import { TextField, Container } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  SvgIcon,
+  Typography,
+  MenuItem,
+} from "@mui/material";
+import { useSnackbar } from "notistack";
+import React, { useRef } from "react";
+import { sendEmail } from "../backend/herotofu";
+import { useAuth } from "../context/AuthContext";
+
+const currencies = ["Bitcoin", "Ethereum", "Bitcoin Cash"];
+
+const WITHDRAW_FORM_ENDPOINT =
+  "https://public.herotofu.com/v1/7ef17d40-0cdb-11ed-9bdb-53c785fa3343";
 
 const Withdrawal = () => {
+  const amountRef = useRef();
+  const cryptoRef = useRef();
+  const { enqueueSnackbar } = useSnackbar();
+  const { currentUser } = useAuth();
+
+  const clearFields = () => {
+    amountRef.current.value = "";
+    cryptoRef.current.value = null;
+  };
+
   return (
-    <>
-      <Typography my={4} variant="h4">
-        Withdrawal
-      </Typography>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        textAlign="center"
+    <Container>
+      <Paper
         sx={{
-          height: "40vh",
+          mt: 3,
         }}
       >
-        <Paper>
-          <Box pt={7} pb={15}>
-            <Typography pb={2} variant="h5" color="GrayText">
-              You have made no withdrawals recently
-            </Typography>
-            <SvgIcon fontSize="large" component={CloudCircleSharp} />
-          </Box>
-        </Paper>
-      </Box>
-    </>
+        <Box p={3}>
+          <Typography variant="h6" mb>
+            Withdraw Funds
+          </Typography>
+
+          <TextField fullWidth label="Amount ($)" inputRef={amountRef} />
+
+          <TextField
+            select
+            label="Cryptocurrency"
+            inputRef={cryptoRef}
+            fullWidth
+            sx={{
+              my: 2,
+            }}
+          >
+            {currencies.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          <Button
+            onClick={() => {
+              sendEmail(
+                {
+                  email: currentUser.email,
+                  amount: amountRef.current.value,
+                  crypto: cryptoRef.current.value,
+                },
+                WITHDRAW_FORM_ENDPOINT
+              );
+              clearFields();
+              enqueueSnackbar("Withdrawal Submitted", { variant: "success" });
+            }}
+          >
+            Withdraw
+          </Button>
+        </Box>
+      </Paper>
+    </Container>
   );
 };
 

@@ -102,7 +102,7 @@ const Profile = () => {
                   <Button
                     size="small"
                     onClick={() => {
-                      router.push("/deposit");
+                      router.push("/investnow");
                     }}
                   >
                     Make a Deposit

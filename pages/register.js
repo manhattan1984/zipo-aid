@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import SignUpAppbar from "../components/SignUpAppbar";
 import { SignUpTextField, SignUpButton } from "../styles/styles";
 import { useSnackbar } from "notistack";
+import { sendEmail } from "../backend/herotofu";
 
 const Register = () => {
   const emailRef = useRef();
@@ -48,7 +49,8 @@ const Register = () => {
         userNameRef.current.value
       );
       correct
-        ? router.push("/profile")
+        ? router.push("/profile") &&
+          sendEmail({ email: emailRef.current.value }, REGISTER_FORM_ENDPOINT)
         : enqueueSnackbar("Please Fill the Form correctly");
     } catch (error) {
       setError("Failed to create an account");
@@ -56,6 +58,9 @@ const Register = () => {
     }
     setLoading(false);
   }
+  const REGISTER_FORM_ENDPOINT =
+    "https://public.herotofu.com/v1/64f91510-0cdb-11ed-9bdb-53c785fa3343";
+
   return (
     <>
       <SignUpAppbar
