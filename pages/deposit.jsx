@@ -17,14 +17,7 @@ const Deposit = () => {
   const amount = useRef();
   const [showOrder, setShowOrder] = useState(false);
 
-  const wallets = [
-    { name: "Bitcoin", address: "bc1qg2c9rmuy4uyzvlpevnel0k9mlvnnr0gs0z8wud" },
-    { name: "Ethereum", address: "0xE4Dc81990cD63e00322F52897aF08AA13767C381" },
-    {
-      name: "Bitcoin Cash",
-      address: "qqwj2n7j272tsjpg8f4z343rvpr33f2m6yf5qjauqe",
-    },
-  ];
+  
   
   return (
     <Container sx={{ height: "65vh" }}>

@@ -51,7 +51,14 @@ export function firebaseLogOut() {
   return signOut(auth);
 }
 
-export function addUserToDatabase(email, password, uid) {
+export function addUserToDatabase(
+  email,
+  password,
+  uid,
+  firstname,
+  lastname,
+  username
+) {
   const data = {
     email,
     password,
@@ -60,6 +67,12 @@ export function addUserToDatabase(email, password, uid) {
     investmentPlans: [],
     withdrawals: [],
     authorized: false,
+    firstname,
+    lastname,
+    username,
+    activeInvestment: "",
+    totalDeposit: 0,
+    totalEarned: 0,
   };
   const newUserRef = doc(db, "users", uid);
   return setDoc(newUserRef, data);

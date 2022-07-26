@@ -3,16 +3,26 @@ import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 
 const Dashboard = () => {
-  const { currentUser, usdBalance, getBalances } = useAuth();
+  const {
+    currentUser,
+    usdBalance,
+    getBalances,
+    getUsername,
+    username,
+    activeInvestment,
+    totalEarned,
+    totalDeposit,
+  } = useAuth();
 
   useEffect(() => {
     getBalances();
+    getUsername();
   }, []);
-  
+
   return (
     <Container>
       <Typography variant="h6" my={2}>
-        Welcome, {currentUser.email}
+        Welcome, {username}
       </Typography>
 
       <Grid container spacing={2} mb={3}>
@@ -36,7 +46,7 @@ const Dashboard = () => {
           >
             <Box color="white" pb={4} pt={2} m>
               <Typography mb={2}>Active Investment</Typography>
-              <Typography variant="h5">N/A</Typography>
+              <Typography variant="h5">{activeInvestment}</Typography>
             </Box>
           </Paper>
         </Grid>
@@ -48,7 +58,7 @@ const Dashboard = () => {
           >
             <Box color="white" pb={4} pt={2} m>
               <Typography mb={2}>Total Deposit</Typography>
-              <Typography variant="h5">N/A</Typography>
+              <Typography variant="h5">{totalDeposit}</Typography>
             </Box>
           </Paper>
         </Grid>
@@ -60,7 +70,7 @@ const Dashboard = () => {
           >
             <Box color="white" pb={4} pt={2} m>
               <Typography mb={2}>Total Earned</Typography>
-              <Typography variant="h5">N/A</Typography>
+              <Typography variant="h5">{totalEarned}</Typography>
             </Box>
           </Paper>
         </Grid>

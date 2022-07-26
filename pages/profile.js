@@ -30,7 +30,18 @@ function setActive(router, link) {
 const Profile = () => {
   const router = useRouter();
   const [error, setError] = useState("");
-  const { currentUser, logOut, usdBalance, getBalances } = useAuth();
+  const {
+    currentUser,
+    logOut,
+    usdBalance,
+    getBalances,
+    username,
+    getUsername,
+  } = useAuth();
+
+  useEffect(() => {
+    getUsername();
+  }, []);
 
   async function handleLogOut() {
     setError("");
@@ -48,7 +59,7 @@ const Profile = () => {
     try {
       return (
         <Typography variant="h6" my={2}>
-          Hi, Welcome {currentUser.email}
+          Hi, Welcome {username}
         </Typography>
       );
     } catch (e) {}

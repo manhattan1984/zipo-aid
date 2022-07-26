@@ -22,10 +22,14 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [usdBalance, setUsdBalance] = useState(0);
-    const [investmentHistory, setInvestmentHistory] = useState([]);
-    const [withdrawals, setWithdrawals] = useState([]);
+  const [activeInvestment, setActiveInvestment] = useState("");
+  const [totalEarned, setTotalEarned] = useState(0);
+  const [totalDeposit, setTotalDeposit] = useState(0);
+  const [investmentHistory, setInvestmentHistory] = useState([]);
+  const [withdrawals, setWithdrawals] = useState([]);
 
   function getData(docSnap) {
     return docSnap.data();
@@ -35,10 +39,29 @@ export function AuthProvider({ children }) {
     return currentUser.uid;
   }
 
-  async function signUp(email, password) {
+  async function getUsername() {
+    try {
+      const docSnap = await getUserDetails(getUid());
+
+      if (docSnap.exists()) {
+        setUsername(getData(docSnap).username);
+      } else {
+        console.log("Doc Not Found");
+      }
+    } catch (error) {}
+  }
+
+  async function signUp(email, password, firstname, lastname, username) {
     try {
       const userCredential = await firebaseSignUp(email, password);
-      await addUserToDatabase(email, password, userCredential.user.uid);
+      await addUserToDatabase(
+        email,
+        password,
+        userCredential.user.uid,
+        firstname,
+        lastname,
+        username
+      );
       setCurrentUser(userCredential.user);
       return true;
     } catch (error) {
@@ -71,7 +94,11 @@ export function AuthProvider({ children }) {
       const docSnap = await getUserDetails(getUid());
 
       if (docSnap.exists()) {
-        setUsdBalance(getData(docSnap).usdBalance);
+        const data = getData(docSnap);
+        setUsdBalance(data.usdBalance);
+        setActiveInvestment(data.activeInvestment);
+        setTotalDeposit(data.totalDeposit);
+        setTotalEarned(data.totalEarned);
       } else {
         console.log("Doc Not Found");
       }
@@ -167,6 +194,11 @@ export function AuthProvider({ children }) {
     getWithdrawals,
     addWithdrawal,
     getAuthorized,
+    username,
+    getUsername,
+    activeInvestment,
+    totalEarned,
+    totalDeposit,
   };
 
   return (

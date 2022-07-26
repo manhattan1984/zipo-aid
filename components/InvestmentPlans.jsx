@@ -11,16 +11,22 @@ import {
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import lists from "../constants/lists";
+import { useAuth } from "../context/AuthContext";
 //   import { useAuth } from "../context/AuthContext";
 
 const InvestmentPlans = ({ children }) => {
   const InvestmentItem = ({ title, percent, time, min, max }) => {
     //   const { addInvestment } = useAuth();
     const router = useRouter();
+    const { currentUser } = useAuth();
 
     const handleInvestButton = () => {
       // addInvestment(title);
-      router.push("/deposit");
+
+      if (!currentUser) {
+        return router.push("/register");
+      }
+      router.push({ pathname: "/investnow/[title]", query: { title } });
     };
 
     return (

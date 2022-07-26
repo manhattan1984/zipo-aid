@@ -35,14 +35,14 @@ function MenuDrawer({ children, open, toggleMenu }) {
 }
 
 export const authPages = [
-  { name: "Dashboard", link: "dashboard" },
-  { name: "Invest Now", link: "deposit" },
-  {name: "Investment History", link: "investments"},
-  { name: "Withdraw Fund", link: "withdrawal" },
-  
-  { name: "Pro Trading", link: "protrading" },
+  { name: "Dashboard", link: "/dashboard" },
+  { name: "Invest Now", link: "/investnow" },
+  { name: "Investment History", link: "/investments" },
+  { name: "Withdraw Fund", link: "/withdrawal" },
 
-  { name: "Profile", link: "profile" },
+  { name: "Pro Trading", link: "/protrading" },
+
+  { name: "Profile", link: "/profile" },
 ];
 
 const pages = [
@@ -73,8 +73,8 @@ const MyAppBar = () => {
                 {/* <Box>
                   <Image src={Logo} layout="responsive" height={300} />
                 </Box> */}
-                <Typography color="primary.main" variant="h5">
-                  Zipo-AID
+                <Typography color="primary.main" variant="h4">
+                  Zipo Aid
                 </Typography>
               </Link>
             </Grid>
@@ -93,7 +93,7 @@ const MyAppBar = () => {
             <Grid item md={8} display={{ xs: "none", md: "flex" }}>
               <Grid container justifyContent="flex-end">
                 {links.map(({ name, link }) => (
-                  <Link href={link} key={name} passHref>
+                  <Link href={link} key={name}>
                     <Button
                       sx={{
                         ...setActive(router, link),
@@ -110,13 +110,13 @@ const MyAppBar = () => {
       </AppBar>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
-        <Container sx={{ width: "100vw", zIndex: "tooltip" }}>
+        <Container sx={{ width: "60vw", zIndex: "tooltip" }}>
           <Grid container>
             <Grid container justifyContent="space-between">
               <Grid item>
                 <Link href="/" passHref>
                   {/* <Image src={Logo} height={50} width={150} /> */}
-                  <Typography variant="h3" color="primary.main">
+                  <Typography variant="h4" color="primary.main">
                     Zipo Aid
                   </Typography>
                 </Link>
@@ -139,7 +139,7 @@ const MyAppBar = () => {
             >
               {links.map(({ name, link }, index) => (
                 <Grid item key={index}>
-                  <Link href={link} passHref>
+                  <Link href={link}>
                     <MuiLink
                       sx={{
                         ...setActive(router, link),

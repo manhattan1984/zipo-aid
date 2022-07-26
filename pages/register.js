@@ -8,7 +8,9 @@ import { useSnackbar } from "notistack";
 
 const Register = () => {
   const emailRef = useRef();
-  const usernameRef = useRef();
+  const userNameRef = useRef();
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
   const { signUp } = useAuth();
@@ -24,7 +26,14 @@ const Register = () => {
       enqueueSnackbar("Passwords do not match");
     }
 
-    if (!(usernameRef.current.value || emailRef.current.value)) {
+    if (
+      !(
+        userNameRef.current.value ||
+        emailRef.current.value ||
+        firstNameRef.current.value ||
+        lastNameRef.current.value
+      )
+    ) {
       enqueueSnackbar("Please Complete the form");
     }
 
@@ -33,7 +42,10 @@ const Register = () => {
       setLoading(true);
       const correct = await signUp(
         emailRef.current.value,
-        passwordRef.current.value
+        passwordRef.current.value,
+        firstNameRef.current.value,
+        lastNameRef.current.value,
+        userNameRef.current.value
       );
       correct
         ? router.push("/profile")
@@ -68,6 +80,31 @@ const Register = () => {
             type="email"
             label="Enter your email"
             inputRef={emailRef}
+          />
+        </Box>
+        <SignUpTextField
+          variant="standard"
+          fullWidth
+          label="Enter your username"
+          inputRef={userNameRef}
+        />
+
+        <Box display="flex" justifyContent="space-between">
+          <SignUpTextField
+            sx={{
+              mr: 1,
+            }}
+            variant="standard"
+            fullWidth
+            label="First Name"
+            inputRef={firstNameRef}
+          />
+
+          <SignUpTextField
+            variant="standard"
+            fullWidth
+            label="Last Name"
+            inputRef={lastNameRef}
           />
         </Box>
 

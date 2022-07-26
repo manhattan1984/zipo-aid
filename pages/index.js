@@ -13,8 +13,6 @@ import styles from "../styles/Home.module.css";
 import Ease from "../public/ease.webp";
 import Bank from "../public/bank.webp";
 import Secure from "../public/secure.webp";
-import Coins from "../public/coins.avif";
-import Signals from "../public/signals.avif";
 import { useRouter } from "next/router";
 import InvestmentPlans from "../components/InvestmentPlans";
 import MarketWatch from "../public/marketwatch.svg";
