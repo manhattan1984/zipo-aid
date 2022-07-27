@@ -58,7 +58,7 @@ const Dashboard = () => {
           >
             <Box color="white" pb={4} pt={2} m>
               <Typography mb={2}>Total Deposit</Typography>
-              <Typography variant="h5">{totalDeposit}</Typography>
+              <Typography variant="h5">${totalDeposit}</Typography>
             </Box>
           </Paper>
         </Grid>
@@ -70,7 +70,7 @@ const Dashboard = () => {
           >
             <Box color="white" pb={4} pt={2} m>
               <Typography mb={2}>Total Earned</Typography>
-              <Typography variant="h5">{totalEarned}</Typography>
+              <Typography variant="h5">${totalEarned}</Typography>
             </Box>
           </Paper>
         </Grid>
