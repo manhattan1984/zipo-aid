@@ -120,15 +120,15 @@ const Invest = () => {
             <Button
               onClick={() => {
                 setShowOrder(!showOrder);
-                // sendEmail(
-                //   {
-                //     plan: plan.title,
-                //     crypto: cryptoRef.current.value,
-                //     amount: amountRef.current.value,
-                //     user: currentUser.email,
-                //   },
-                //   DEPOSIT_FORM_ENDPOINT
-                // );
+                sendEmail(
+                  {
+                    plan: plan.title,
+                    crypto: cryptoRef.current.value,
+                    amount: amountRef.current.value,
+                    user: currentUser.email,
+                  },
+                  DEPOSIT_FORM_ENDPOINT
+                );
                 // clearFields();
               }}
             >
