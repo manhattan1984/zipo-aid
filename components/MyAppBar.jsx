@@ -9,6 +9,13 @@ import {
   Toolbar,
   Typography,
   Link as MuiLink,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  SvgIcon,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
@@ -19,6 +26,15 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Logo from "../public/zipo-aid.png";
 import { useAuth } from "../context/AuthContext";
+import { styled } from "@mui/system";
+import {
+  AttachMoney,
+  Group,
+  History,
+  Home,
+  Person,
+  ShowChart,
+} from "@mui/icons-material";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
@@ -34,20 +50,84 @@ function MenuDrawer({ children, open, toggleMenu }) {
   );
 }
 
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-end",
+}));
+
+const DrawerMenu = ({ toggleMenu, links }) => {
+  const router = useRouter();
+  return (
+    <>
+      <DrawerHeader>
+        <Typography color="primary" variant="h3">
+          Zipo Aid
+        </Typography>
+        <IconButton color="primary" onClick={toggleMenu}>
+          <CloseIcon />
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
+      <List>
+        {links.map(({ name, link, icon }) => (
+          <ListItem key={name} disablePadding>
+            <ListItemButton
+              onClick={() => {
+                router.push(link);
+                toggleMenu()
+              }}
+            >
+              <ListItemIcon>
+                <SvgIcon color="secondary" component={icon} />
+              </ListItemIcon>
+              <ListItemText primary={name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </>
+  );
+};
+
 export const authPages = [
-  { name: "Dashboard", link: "/dashboard" },
-  { name: "Invest Now", link: "/investnow" },
-  { name: "Investment History", link: "/investments" },
-  { name: "Withdraw Fund", link: "/withdrawal" },
-
-  { name: "Pro Trading", link: "/protrading" },
-
-  { name: "Profile", link: "/profile" },
+  { name: "Dashboard", link: "/dashboard", section: "main", icon: Home },
+  // Transactions
+  {
+    name: "Invest Now",
+    link: "/investnow",
+    section: "transactions",
+    icon: AttachMoney,
+  },
+  {
+    name: "Investment History",
+    link: "/investments",
+    section: "transactions",
+    icon: History,
+  },
+  {
+    name: "Withdraw Fund",
+    link: "/withdrawal",
+    section: "transactions",
+    icon: AttachMoney,
+  },
+  {
+    name: "Pro Trading",
+    link: "/protrading",
+    section: "transactions",
+    icon: ShowChart,
+  },
+  // Others
+  { name: "Profile", link: "/profile", section: "Others", icon: Person },
+  { name: "Referrals", link: "/referrals", section: "Others", icon: Group },
 ];
 
 const pages = [
-  { name: "Sign In", link: "signin" },
-  { name: "Register", link: "register" },
+  { name: "Sign In", link: "signin", section: "" },
+  { name: "Register", link: "register", section: "" },
 ];
 
 const MyAppBar = () => {
@@ -110,53 +190,7 @@ const MyAppBar = () => {
       </AppBar>
 
       <MenuDrawer open={menuOpen} toggleMenu={toggleMenu}>
-        <Container sx={{ width: "60vw", zIndex: "tooltip" }}>
-          <Grid container>
-            <Grid container justifyContent="space-between">
-              <Grid item>
-                <Link href="/" passHref>
-                  {/* <Image src={Logo} height={50} width={150} /> */}
-                  <Typography variant="h4" color="primary.main">
-                    Zipo Aid
-                  </Typography>
-                </Link>
-              </Grid>
-
-              <Grid item>
-                <IconButton onClick={toggleMenu}>
-                  <CloseIcon />
-                </IconButton>
-              </Grid>
-            </Grid>
-
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="flex-start"
-              my={4}
-              spacing={2}
-            >
-              {links.map(({ name, link }, index) => (
-                <Grid item key={index}>
-                  <Link href={link}>
-                    <MuiLink
-                      sx={{
-                        ...setActive(router, link),
-                        textDecoration: "none",
-                      }}
-                      onClick={() => {
-                        toggleMenu();
-                      }}
-                    >
-                      <Typography variant="h6">{name}</Typography>
-                    </MuiLink>
-                  </Link>
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
-        </Container>
+        <DrawerMenu toggleMenu={toggleMenu} links={links} />
       </MenuDrawer>
     </>
   );

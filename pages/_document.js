@@ -6,17 +6,19 @@ const Document = () => {
   return (
     <Html>
       <Head>
-        {/* <link
-          href="https://fonts.googleapis.com/css2?family=Lobster&family=Raleway:wght@300&display=swap"
+        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Raleway&display=swap"
           rel="stylesheet"
-        /> */}
+        />
         <link rel="shortcut icon" href="zipo-aid.png" />
       </Head>
       <body>
         <Main />
         <NextScript />
         <Script
-        id="chatBot"
+          id="chatBot"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();

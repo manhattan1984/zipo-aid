@@ -11,7 +11,25 @@ const themeOptions = {
     },
   },
   typography: {
-    fontFamily: "Montserrat",
+    fontFamily: "Raleway",
+    h1: {
+      fontFamily: "Lobster Two",
+    },
+    h2: {
+      fontFamily: "Lobster Two",
+    },
+    h3: {
+      fontFamily: "Lobster Two",
+    },
+    h4: {
+      fontFamily: "Lobster Two",
+    },
+    h5: {
+      fontFamily: "Lobster Two",
+    },
+    h6: {
+      fontFamily: "Lobster Two",
+    },
   },
 };
 

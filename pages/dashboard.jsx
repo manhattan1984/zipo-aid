@@ -1,6 +1,53 @@
-import { Grid, Paper, Box, Typography, Container } from "@mui/material";
+import {
+  AttachMoney,
+  LocalAtm,
+  Money,
+  Savings,
+  ShowChart,
+} from "@mui/icons-material";
+import {
+  Grid,
+  Paper,
+  Box,
+  Typography,
+  Container,
+  SvgIcon,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+
+const DashboardItem = ({ icon, title, value, isNumber, bgColor }) => {
+  return (
+    <Grid item xs={12} md={6} lg={3}>
+      <Paper
+        sx={{
+          backgroundColor: bgColor,
+        }}
+      >
+        <Box display="flex" justifyContent="space-between">
+          <Box color="white" width="100%" pb={4} pt={2} m>
+            <Typography mb={2}>{title}</Typography>
+            <Typography variant="h5">
+              {isNumber ? "$" : ""} {value}
+            </Typography>
+          </Box>
+
+          <SvgIcon
+            color="white"
+            fontSize="large"
+            sx={{
+              alignSelf: "center",
+              color: "white",
+              mr: 4,
+              fontSize: "3rem",
+            }}
+            component={icon}
+          />
+        </Box>
+      </Paper>
+    </Grid>
+  );
+};
 
 const Dashboard = () => {
   const {
@@ -14,6 +61,37 @@ const Dashboard = () => {
     totalDeposit,
   } = useAuth();
 
+  const dashboardItems = [
+    {
+      icon: Savings,
+      title: "Available Balance",
+      value: usdBalance,
+      isNumber: true,
+      bgColor: "primary.light",
+    },
+    {
+      icon: ShowChart,
+      title: "Active Investment",
+      value: activeInvestment,
+      isNumber: false,
+      bgColor: "secondary.light",
+    },
+    {
+      icon: AttachMoney,
+      title: "Total Deposit",
+      value: totalDeposit,
+      isNumber: true,
+      bgColor: "primary.main",
+    },
+    {
+      icon: LocalAtm,
+      title: "Total Earned",
+      value: totalEarned,
+      isNumber: true,
+      bgColor: "secondary.main",
+    },
+  ];
+
   useEffect(() => {
     getBalances();
     getUsername();
@@ -26,54 +104,16 @@ const Dashboard = () => {
       </Typography>
 
       <Grid container spacing={2} mb={3}>
-        <Grid item xs={12} md={6} lg={3}>
-          <Paper
-            sx={{
-              backgroundColor: "primary.light",
-            }}
-          >
-            <Box color="white" width="100%" pb={4} pt={2} m>
-              <Typography mb={2}>Available Balance</Typography>
-              <Typography variant="h5">${usdBalance}</Typography>
-            </Box>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <Paper
-            sx={{
-              backgroundColor: "secondary.light",
-            }}
-          >
-            <Box color="white" pb={4} pt={2} m>
-              <Typography mb={2}>Active Investment</Typography>
-              <Typography variant="h5">{activeInvestment}</Typography>
-            </Box>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <Paper
-            sx={{
-              backgroundColor: "primary.main",
-            }}
-          >
-            <Box color="white" pb={4} pt={2} m>
-              <Typography mb={2}>Total Deposit</Typography>
-              <Typography variant="h5">${totalDeposit}</Typography>
-            </Box>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} md={6} lg={3}>
-          <Paper
-            sx={{
-              backgroundColor: "secondary.main",
-            }}
-          >
-            <Box color="white" pb={4} pt={2} m>
-              <Typography mb={2}>Total Earned</Typography>
-              <Typography variant="h5">${totalEarned}</Typography>
-            </Box>
-          </Paper>
-        </Grid>
+        {dashboardItems.map(({ icon, title, value, isNumber, bgColor }) => (
+          <DashboardItem
+            key={title}
+            icon={icon}
+            title={title}
+            value={value}
+            isNumber={isNumber}
+            bgColor={bgColor}
+          />
+        ))}
       </Grid>
     </Container>
   );
