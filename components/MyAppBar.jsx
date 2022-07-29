@@ -231,6 +231,7 @@ const MyAppBar = () => {
               <Box display="flex">
                 {langs.map(({ value, label }) => (
                   <Typography
+                    key={label}
                     mr
                     color="primary"
                     onClick={() => {
