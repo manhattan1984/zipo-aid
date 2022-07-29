@@ -11,13 +11,6 @@ const SignUpAppbar = ({ text, onClick }) => {
       <Toolbar disableGutters>
         <Grid container>
           <Grid item xs={6}>
-            {/* <Image
-              src={logo}
-              alt="logo"
-              layout="fixed"
-              width={150}
-              height={50}
-            /> */}
             <Typography variant="h5" color="primary.main">
               {/* Zipo Aid */}
             </Typography>

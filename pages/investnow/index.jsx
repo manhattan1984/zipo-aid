@@ -7,7 +7,7 @@ const MyInvestmentPlans = () => {
     <Container>
       <InvestmentPlans>
         <Typography variant="h4" textAlign="left" mt={3}>
-          Select A Plan
+          {t("select_plan")}
         </Typography>
       </InvestmentPlans>
     </Container>

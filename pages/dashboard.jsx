@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 const DashboardItem = ({ icon, title, value, isNumber, bgColor }) => {
   return (
@@ -97,10 +98,12 @@ const Dashboard = () => {
     getUsername();
   }, []);
 
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Typography variant="h6" my={2}>
-        Welcome, {username}
+        {t("welcome_user")}, {username}
       </Typography>
 
       <Grid container spacing={2} mb={3}>

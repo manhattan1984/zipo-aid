@@ -23,7 +23,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import Menu, { LINKS } from "./Menu";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -31,6 +31,7 @@ import Logo from "../public/zipo-aid.png";
 import { useAuth } from "../context/AuthContext";
 import { styled } from "@mui/system";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import i18next from "i18next";
 
 import {
   AttachMoney,
@@ -43,7 +44,7 @@ import {
   ShowChart,
 } from "@mui/icons-material";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import { i18n } from "next-i18next";
+import { useTranslation } from "react-i18next";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
@@ -71,11 +72,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 const DrawerMenu = ({ toggleMenu, links }) => {
   const router = useRouter();
   const { logOut } = useAuth();
+  const { t } = useTranslation();
   return (
     <>
       <DrawerHeader>
         <Typography color="primary" variant="h3">
-          Zipo Aid
+          t("app_title")
         </Typography>
         <IconButton color="primary" onClick={toggleMenu}>
           <CloseIcon />
@@ -104,72 +106,92 @@ const DrawerMenu = ({ toggleMenu, links }) => {
   );
 };
 
-export const authPages = [
-  { name: "Dashboard", link: "/dashboard", section: "main", icon: Home },
-  // Transactions
-  {
-    name: "Invest Now",
-    link: "/investnow",
-    section: "transactions",
-    icon: AttachMoney,
-  },
-  {
-    name: "Investment History",
-    link: "/investments",
-    section: "transactions",
-    icon: History,
-  },
-  {
-    name: "Withdraw Fund",
-    link: "/withdrawal",
-    section: "transactions",
-    icon: AttachMoney,
-  },
-  {
-    name: "Pro Trading",
-    link: "/protrading",
-    section: "transactions",
-    icon: ShowChart,
-  },
-  // Others
-  { name: "Profile", link: "/profile", section: "Others", icon: Person },
-  { name: "Referrals", link: "/referrals", section: "Others", icon: Group },
-  { name: "Log Out", link: "/", section: "Others", icon: PowerSettingsNewIcon },
-];
-
-const pages = [
-  { name: "Sign In", link: "signin", section: "", icon: Person },
-  { name: "Register", link: "register", section: "", icon: PersonAddAlt },
-];
-
-const langs = [
-  {
-    value: "en",
-    label: "English",
-  },
-  {
-    value: "tr",
-    label: "Turkish",
-  },
-];
-
 const MyAppBar = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const { currentUser, logOut } = useAuth();
-  const langRef = useRef();
+  const langRef = useRef("en");
 
   const handleLangChange = () => {
-    i18n.changeLanguage(langRef.current.value);
+    i18next.changeLanguage(langRef.current.value);
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const { t } = useTranslation();
+
+  const authPages = [
+    { name: t("dashboard"), link: "/dashboard", section: "main", icon: Home },
+    // Transactions
+    {
+      name: t("invest_now"),
+      link: "/investnow",
+      section: "transactions",
+      icon: AttachMoney,
+    },
+    {
+      name: t("investment_history"),
+      link: "/investments",
+      section: "transactions",
+      icon: History,
+    },
+    {
+      name: t("withdraw_fund"),
+      link: "/withdrawal",
+      section: "transactions",
+      icon: AttachMoney,
+    },
+    {
+      name: t("pro_trading"),
+      link: "/protrading",
+      section: "transactions",
+      icon: ShowChart,
+    },
+    // Others
+    { name: t("profile"), link: "/profile", section: "Others", icon: Person },
+    {
+      name: t("referrals"),
+      link: "/referrals",
+      section: "Others",
+      icon: Group,
+    },
+    {
+      name: t("log_out"),
+      link: "/",
+      section: "Others",
+      icon: PowerSettingsNewIcon,
+    },
+  ];
+
+  const pages = [
+    { name: t("sign_in"), link: "signin", section: "", icon: Person },
+    { name: t("register"), link: "register", section: "", icon: PersonAddAlt },
+  ];
+
   let links;
 
   currentUser ? (links = authPages) : (links = pages);
+
+  const langs = [
+    {
+      value: "en",
+      label: "En",
+    },
+    {
+      value: "tr",
+      label: t("turkish"),
+    },
+    {
+      value: "es",
+      label: t("spanish"),
+    },
+    {
+      value: "pt",
+      label: t("portuguese"),
+    },
+  ];
 
   return (
     <>
@@ -179,13 +201,13 @@ const MyAppBar = () => {
             <Grid item xs={6} md={4}>
               <Link href="/" passHref>
                 <Typography color="primary.main" variant="h4">
-                  Zipo Aid
+                  {t("app_title")}
                 </Typography>
               </Link>
             </Grid>
             {/* Language */}
             <Grid item xs={3} md={2}>
-              <TextField
+              {/* <TextField
                 inputRef={langRef}
                 InputProps={{
                   startAdornment: (
@@ -195,14 +217,30 @@ const MyAppBar = () => {
                   ),
                 }}
                 select
-                onChange={handleLangChange}
+                defaultValue="en"
+                onChange={() => {
+                  console.log(langRef.current.value);
+                }}
               >
                 {langs.map(({ value, label }) => (
                   <MenuItem key={value} value={value}>
                     {label}
                   </MenuItem>
                 ))}
-              </TextField>
+              </TextField> */}
+              <Box display="flex">
+                {langs.map(({ value, label }) => (
+                  <Typography
+                    mr
+                    color="primary"
+                    onClick={() => {
+                      i18next.changeLanguage(value);
+                    }}
+                  >
+                    {label}
+                  </Typography>
+                ))}
+              </Box>
             </Grid>
 
             {/* Mobile */}

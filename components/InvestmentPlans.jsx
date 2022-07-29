@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 import lists from "../constants/lists";
 import { useAuth } from "../context/AuthContext";
 //   import { useAuth } from "../context/AuthContext";
@@ -19,6 +20,8 @@ const InvestmentPlans = ({ children }) => {
     //   const { addInvestment } = useAuth();
     const router = useRouter();
     const { currentUser } = useAuth();
+
+    const { t } = useTranslation();
 
     const handleInvestButton = () => {
       // addInvestment(title);
@@ -38,17 +41,21 @@ const InvestmentPlans = ({ children }) => {
             </Typography>
             <Typography variant="h5">{percent}%</Typography>
             <Typography variant="body1">{time}</Typography>
-            <Typography variant="body2">Capital Returns</Typography>
-            <Typography variant="body2">24/7 Support</Typography>
+            <Typography variant="body2">{t("cap_ret")}</Typography>
+            <Typography variant="body2">{t("247")}</Typography>
 
             <Box>
-              <Typography variant="body1">Min: {min}</Typography>
-              <Typography variant="body1">Max: {max}</Typography>
+              <Typography variant="body1">
+                {t("min")} {min}
+              </Typography>
+              <Typography variant="body1">
+                {t("max")} {max}
+              </Typography>
             </Box>
           </CardContent>
           <CardActions>
             <Button onClick={handleInvestButton} color="secondary">
-              Invest Now
+              {t("invest_now")}
             </Button>
           </CardActions>
         </Card>

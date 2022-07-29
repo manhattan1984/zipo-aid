@@ -74,10 +74,8 @@ const Register = () => {
 
       <Container maxWidth="sm" justifyContent="center">
         <Box textAlign="center" m>
-          <Typography variant="h4">Welcome To Zipo-Aid</Typography>
-          <Typography variant="subtitle1">
-            To Begin, Create Your Account
-          </Typography>
+          <Typography variant="h4">{t("welcome")}</Typography>
+          <Typography variant="subtitle1">{t("begin")}</Typography>
         </Box>
 
         <Box display="flex" justifyContent="space-between">
@@ -92,7 +90,7 @@ const Register = () => {
         <SignUpTextField
           variant="standard"
           fullWidth
-          label="Enter your username"
+          label={t("username")}
           inputRef={userNameRef}
         />
 
@@ -103,14 +101,14 @@ const Register = () => {
             }}
             variant="standard"
             fullWidth
-            label="First Name"
+            label={t("f_name")}
             inputRef={firstNameRef}
           />
 
           <SignUpTextField
             variant="standard"
             fullWidth
-            label="Last Name"
+            label={t("l_name")}
             inputRef={lastNameRef}
           />
         </Box>
@@ -118,7 +116,7 @@ const Register = () => {
         <SignUpTextField
           variant="standard"
           fullWidth
-          label="Enter Password"
+          label={t("password")}
           type="password"
           inputRef={passwordRef}
         />
@@ -126,7 +124,7 @@ const Register = () => {
         <SignUpTextField
           variant="standard"
           fullWidth
-          label="Confirm Password"
+          label={t("c_password")}
           type="password"
           inputRef={confirmPasswordRef}
         />
@@ -134,14 +132,13 @@ const Register = () => {
         <SignUpTextField
           variant="standard"
           fullWidth
-          label="Referred By"
+          label={t("referred_by")}
           inputRef={referralRef}
         />
 
         <Box m={4}>
           <Typography m variant="caption" textAlign="center" color="GrayText">
-            By clicking the &apos;Register account&lsquo; button you agree to
-            our Privacy Policy and Terms of Service.
+            {t("register_caption")}
           </Typography>
         </Box>
 
@@ -151,7 +148,7 @@ const Register = () => {
           onClick={handleSubmit}
           variant="contained"
         >
-          Register Account
+          {t("register")}
         </SignUpButton>
       </Container>
     </>
