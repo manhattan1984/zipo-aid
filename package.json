@@ -15,7 +15,7 @@
     "@mui/material": "^5.9.1",
     "firebase": "^9.9.0",
     "next": "12.2.3",
-    "next-auth": "^4.10.2",
+    "next-i18next": "^11.3.0",
     "notistack": "^2.0.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",

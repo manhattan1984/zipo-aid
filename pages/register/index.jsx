@@ -1,11 +1,11 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useRef, useState } from "react";
 import { useRouter } from "next/router";
-import { useAuth } from "../context/AuthContext";
-import SignUpAppbar from "../components/SignUpAppbar";
-import { SignUpTextField, SignUpButton } from "../styles/styles";
+import { useAuth } from "../../context/AuthContext";
+import SignUpAppbar from "../../components/SignUpAppbar";
+import { SignUpTextField, SignUpButton } from "../../styles/styles";
 import { useSnackbar } from "notistack";
-import { sendEmail } from "../backend/herotofu";
+import { sendEmail } from "../../backend/herotofu";
 
 const Register = () => {
   const emailRef = useRef();
@@ -14,10 +14,12 @@ const Register = () => {
   const lastNameRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+  const referralRef = useRef();
   const { signUp } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { username } = router.query;
   const { enqueueSnackbar } = useSnackbar();
 
   async function handleSubmit(e) {
@@ -127,6 +129,13 @@ const Register = () => {
           label="Confirm Password"
           type="password"
           inputRef={confirmPasswordRef}
+        />
+
+        <SignUpTextField
+          variant="standard"
+          fullWidth
+          label="Referred By"
+          inputRef={referralRef}
         />
 
         <Box m={4}>

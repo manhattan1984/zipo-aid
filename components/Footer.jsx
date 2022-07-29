@@ -57,7 +57,7 @@ const Footer = () => {
             <Telegram color="primary" />
           </IconButton>
           <Box display="flex" ml>
-            <SvgIcon component={Email} color="primary"/>
+            <SvgIcon component={Email} color="primary" />
             <Typography ml variant="caption">
               ZipoAidInvestmentz@gmail.com
             </Typography>
@@ -77,6 +77,18 @@ const Footer = () => {
         Apple and the Apple logo are trademarks of Apple Inc, registered in the
         US and other countries and regions. App Store is a service mark of Apple
         Inc. Google Play and the Google Play logo are trademarks of Google LLC.
+      </Typography>
+
+      <Divider />
+
+      <Typography
+        sx={{
+          mt: 2,
+        }}
+        variant="caption"
+        textAlign="center"
+      >
+        All rights reserved © 2022 ZipoAid. NMLS #1991139{" "}
       </Typography>
     </Box>
   );

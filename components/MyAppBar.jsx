@@ -16,25 +16,34 @@ import {
   SvgIcon,
   ListItemIcon,
   ListItemText,
+  TextField,
+  InputAdornment,
+  MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 // import Menu, { LINKS } from "./Menu";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Logo from "../public/zipo-aid.png";
 import { useAuth } from "../context/AuthContext";
 import { styled } from "@mui/system";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+
 import {
   AttachMoney,
   Group,
   History,
   Home,
+  Logout,
   Person,
+  PersonAddAlt,
   ShowChart,
 } from "@mui/icons-material";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import { i18n } from "next-i18next";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
@@ -61,6 +70,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const DrawerMenu = ({ toggleMenu, links }) => {
   const router = useRouter();
+  const { logOut } = useAuth();
   return (
     <>
       <DrawerHeader>
@@ -78,7 +88,8 @@ const DrawerMenu = ({ toggleMenu, links }) => {
             <ListItemButton
               onClick={() => {
                 router.push(link);
-                toggleMenu()
+                toggleMenu();
+                link === "/" ? logOut() : null;
               }}
             >
               <ListItemIcon>
@@ -123,17 +134,34 @@ export const authPages = [
   // Others
   { name: "Profile", link: "/profile", section: "Others", icon: Person },
   { name: "Referrals", link: "/referrals", section: "Others", icon: Group },
+  { name: "Log Out", link: "/", section: "Others", icon: PowerSettingsNewIcon },
 ];
 
 const pages = [
-  { name: "Sign In", link: "signin", section: "" },
-  { name: "Register", link: "register", section: "" },
+  { name: "Sign In", link: "signin", section: "", icon: Person },
+  { name: "Register", link: "register", section: "", icon: PersonAddAlt },
+];
+
+const langs = [
+  {
+    value: "en",
+    label: "English",
+  },
+  {
+    value: "tr",
+    label: "Turkish",
+  },
 ];
 
 const MyAppBar = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const { currentUser } = useAuth();
+  const { currentUser, logOut } = useAuth();
+  const langRef = useRef();
+
+  const handleLangChange = () => {
+    i18n.changeLanguage(langRef.current.value);
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -150,18 +178,38 @@ const MyAppBar = () => {
           <Grid container>
             <Grid item xs={6} md={4}>
               <Link href="/" passHref>
-                {/* <Box>
-                  <Image src={Logo} layout="responsive" height={300} />
-                </Box> */}
                 <Typography color="primary.main" variant="h4">
                   Zipo Aid
                 </Typography>
               </Link>
             </Grid>
+            {/* Language */}
+            <Grid item xs={3} md={2}>
+              <TextField
+                inputRef={langRef}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <LanguageOutlinedIcon color="primary" />
+                    </InputAdornment>
+                  ),
+                }}
+                select
+                onChange={handleLangChange}
+              >
+                {langs.map(({ value, label }) => (
+                  <MenuItem key={value} value={value}>
+                    {label}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Grid>
+
             {/* Mobile */}
+
             <Grid
               item
-              xs={6}
+              xs={3}
               display={{ xs: "flex", md: "none" }}
               justifyContent="flex-end"
             >
@@ -170,13 +218,16 @@ const MyAppBar = () => {
               </IconButton>
             </Grid>
             {/* Larger */}
-            <Grid item md={8} display={{ xs: "none", md: "flex" }}>
+            <Grid item md={6} display={{ xs: "none", md: "flex" }}>
               <Grid container justifyContent="flex-end">
                 {links.map(({ name, link }) => (
                   <Link href={link} key={name}>
                     <Button
                       sx={{
                         ...setActive(router, link),
+                      }}
+                      onClick={() => {
+                        link === "/" ? logOut() : null;
                       }}
                     >
                       {name}

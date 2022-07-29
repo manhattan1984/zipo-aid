@@ -12,8 +12,10 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import {
+  browserSessionPersistence,
   createUserWithEmailAndPassword,
   getAuth,
+  setPersistence,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -44,7 +46,14 @@ export function firebaseSignUp(email, password) {
 }
 
 export function firebaseLogIn(email, password) {
-  return signInWithEmailAndPassword(auth, email, password);
+  try {
+    setPersistence(auth, browserSessionPersistence);
+    return signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
+  }
 }
 
 export function firebaseLogOut() {
