@@ -77,7 +77,7 @@ const DrawerMenu = ({ toggleMenu, links }) => {
     <>
       <DrawerHeader>
         <Typography color="primary" variant="h3">
-          t("app_title")
+          {t("app_title")}
         </Typography>
         <IconButton color="primary" onClick={toggleMenu}>
           <CloseIcon />

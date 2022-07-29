@@ -68,10 +68,10 @@ const Footer = () => {
       </Grid>
       <Divider />
       <Typography variant="body1" my>
-        t("footer_1")
+        {t("footer_1")}
       </Typography>
       <br />
-      <Typography variant="body2">t("footer_2") </Typography>
+      <Typography variant="body2">{t("footer_2")} </Typography>
 
       <Divider />
 
