@@ -229,7 +229,7 @@ const MyAppBar = () => {
                 ))}
               </TextField> */}
               <Box display="flex">
-                {langs.map(({ value, label }) => (
+                {/* {langs.map(({ value, label }) => (
                   <Typography
                     key={label}
                     mr
@@ -240,7 +240,7 @@ const MyAppBar = () => {
                   >
                     {label}
                   </Typography>
-                ))}
+                ))} */}
               </Box>
             </Grid>
 
