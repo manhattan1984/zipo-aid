@@ -62,31 +62,33 @@ const Dashboard = () => {
     totalDeposit,
   } = useAuth();
 
+  const { t } = useTranslation();
+
   const dashboardItems = [
     {
       icon: Savings,
-      title: "Available Balance",
+      title: t("balance"),
       value: usdBalance,
       isNumber: true,
       bgColor: "primary.light",
     },
     {
       icon: ShowChart,
-      title: "Active Investment",
+      title: t("investment"),
       value: activeInvestment,
       isNumber: false,
       bgColor: "secondary.light",
     },
     {
       icon: AttachMoney,
-      title: "Total Deposit",
+      title: t("deposit"),
       value: totalDeposit,
       isNumber: true,
       bgColor: "primary.main",
     },
     {
       icon: LocalAtm,
-      title: "Total Earned",
+      title: t("earned"),
       value: totalEarned,
       isNumber: true,
       bgColor: "secondary.main",
@@ -97,8 +99,6 @@ const Dashboard = () => {
     getBalances();
     getUsername();
   }, []);
-
-  const { t } = useTranslation();
 
   return (
     <Container>

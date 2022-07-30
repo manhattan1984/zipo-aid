@@ -12,6 +12,7 @@ import Ethereum from "../../public/qr-codes/ethereum.jpeg";
 import Litecoin from "../../public/qr-codes/litecoin.jpeg";
 import Solana from "../../public/qr-codes/solana.jpeg";
 import Xrp from "../../public/qr-codes/xrp.jpeg";
+import { useTranslation } from "react-i18next";
 
 const DEPOSIT_FORM_ENDPOINT =
   "https://public.herotofu.com/v1/940e2700-0cdb-11ed-9bdb-53c785fa3343";
@@ -51,18 +52,24 @@ const wallets = [
 const ShowPayment = ({ name, amount }) => {
   const wallet = wallets.find((wallet) => wallet.name === name);
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Image src={wallet.code} />
-      <Typography variant="h6">
+      {/* <Typography variant="h6">
         Transfer {amount} {wallet.name} to{" "}
       </Typography>
-      <Typography variant="caption">{wallet.address}</Typography>
+      <Typography variant="caption">{wallet.address}</Typography> */}
+      <Typography vairant="h6">
+        {t("transfer", { amount, name: wallet.name, address: wallet.address })}
+      </Typography>
     </>
   );
 };
 
 const Invest = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const { title } = router.query;
   const plan = lists.investmentPlans.find((plan) => plan.title === title);
@@ -85,15 +92,20 @@ const Invest = () => {
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h6">Investment Plan</Typography>
+            <Typography variant="h6">{t("investment_plans")}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <TextField label="Plan" fullWidth value={plan.title} disabled />
+            <TextField
+              label={t("plan")}
+              fullWidth
+              value={plan.title}
+              disabled
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField
               select
-              label="Cryptocurrency"
+              label={t("crypto")}
               inputRef={cryptoRef}
               fullWidth
             >
@@ -105,11 +117,11 @@ const Invest = () => {
             </TextField>{" "}
           </Grid>
           <Grid item xs={12}>
-            <TextField fullWidth label="Amount" inputRef={amountRef} />
+            <TextField fullWidth label={t("amount")} inputRef={amountRef} />
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Interest"
+              label={t("interest")}
               fullWidth
               value={plan.percent}
               disabled
@@ -132,7 +144,7 @@ const Invest = () => {
                 // clearFields();
               }}
             >
-              Submit
+              {t("submit")}
             </Button>
 
             {showOrder ? (

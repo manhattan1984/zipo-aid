@@ -6,7 +6,7 @@
   "dashboard": "Dashboard",
   "invest_now": "Invest Now",
   "investment_history": "Investment History",
-  "withdraw_fund": "Withdraw Fund",
+  "withdraw_fund": "Withdraw Funds",
   "pro_trading": "Pro Trading",
   "profile": "Profile",
   "referrals": "Referrals",
@@ -50,5 +50,86 @@
   "about_2": "Stay connected to the market with our web mobile wallet. Featuring advanced order types and analytical tools for experienced traders, as well as a simple buy & sell interface for those just getting started.",
   "about_3": "We provide premium access to crypto trading for both individuals and institutions through high liquidity, reliable order execution and constant uptime.",
 
-  "welcome_user": "Welcome"
+  "welcome_user": "Welcome",
+  "transfer": "Transfer {{amount}} {{name}} to {{address}}",
+  "investment_plans": "Investment Plans",
+  "crypto": "Cryptocurrency",
+  "plan": "Plan",
+  "amount": "Amount",
+  "interest": "Interest",
+
+  "balance": "Available Balance",
+  "investment": "Active Investment",
+  "deposit": "Total Deposit",
+  "earned": "Total Earned",
+
+  "hero_1": "Buy & trade on the",
+  "hero_2": "original crypto exchange.",
+  "hero_body": "Zipo Aid Investment Trader provides reliable, consistent and profitable financial assistance to our clients around the world. Investments in our trading platforms are securely secured and managed only by our experienced traders to ensure better risk management and profitable trading.",
+
+  "ease": "Ease of Trading",
+  "ease_1": "Intuitive Interface",
+  "ease_2": "Instant Deposit Options",
+  "ease_3": "Withdraw funds to any other wallet",
+
+  "security": "Institutional-Grade Security",
+  "security_1": "98% of assets stored safely offline",
+  "security_2": "Highly encrypted personal data",
+  "security_3": "Whitelisting and transaction confirmation",
+
+  "reliable": "Proven Reliability",
+  "reliable_1": "Exchanging bitcoin since 2018",
+  "reliable_2": "24/7 dedicated support",
+  "reliable_3": "Industry-Leading Uptime",
+
+  "z_a_invest": "ZIPO AID INVESTMENT PLANS",
+  "unlimited": "Unlimited access with our web mobile wallet.",
+  "advanced": "ADVANCED TOOLS PACKED IN AN INTUITIVE INTERFACE",
+  "z_a_body": "Stay connected to the market with our web mobile wallet. Featuring advanced order types and analytical tools for experienced traders, as well as a simple buy & sell interface for those just getting started.",
+
+  "seen": "As Seen On",
+  "tools": "Advanced trading tools.",
+  "professional": "PROFESSIONAL ACCESS, NON-STOP AVAILABILITY",
+  "advanced_body": "We provide premium access to crypto trading for both individuals and institutions through high liquidity, reliable order execution and constant uptime.",
+  "apis": "A RANGE OF POWERFUL APIS",
+
+  "apis_body": "Set up your own trading interface or deploy your algorithmic strategy with our high-performance FIX and HTTP APIs. Connect to our WebSocket for real-time data streaming.",
+  "support": "CONSTANT SUPPORT",
+  "support_body": "Premium 24/7 support available to all customers worldwide by phone or email. Dedicated account managers for partners.",
+
+  "get_started": "Get Started",
+  "investements": "Investments",
+  "no_investments": "You have made no investments recently",
+  "hi_welcome": "Hi, Welcome",
+  "steps_1": "1. Create Account",
+  "steps_2": "2. Enter The Market",
+  "steps_2_btn": "Make a Deposit",
+  "steps_3": "3. Start Pro Trading",
+  "steps_3_btn": "Pro Trading",
+
+  "go_to_dash": "Go To Dashboard",
+  "account": "Account:",
+  "status": "Status",
+  "zipo_starter": "Zipo Aid Started",
+  "zipo_user": "Zipo Aid User",
+  "zipo_vip": "Zipo Aid VIP",
+  "protrading_vip": "Pro Trading is available to only VIP users",
+  "referral_link": "Your Referral Link",
+
+  "invalid_email": "Invalid Email or Password",
+  "no_account": "Don't have an account?",
+  "register_now": "Register now for free",
+
+  "email": "Email",
+  "forgot_password": "Forgot Password?",
+
+  "privacy": "This site is protected by hCaptcha and its Privacy Policy and Terms of Service apply.",
+
+  "withdraw": "Withdraw",
+  "withdraw_snack": "Withdrawal Submitted",
+  "no_match_password": "Passwords do not match",
+  "complete_form": "Please Complete the form",
+  "fill_form": "Please Fill the form correctly",
+
+  "submit": "Submit"
 }

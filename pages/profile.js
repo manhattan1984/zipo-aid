@@ -22,12 +22,14 @@ import {
 import BuyCrypto from "../public/buy-crypto.svg";
 import Image from "next/image";
 import { MarketOverview } from "react-ts-tradingview-widgets";
+import { useTranslation } from "react-i18next";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
 }
 
 const Profile = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const [error, setError] = useState("");
   const {
@@ -59,7 +61,7 @@ const Profile = () => {
     try {
       return (
         <Typography variant="h6" my={2}>
-          Hi, Welcome {username}
+          {t("hi_welcome")} {username}
         </Typography>
       );
     } catch (e) {}
@@ -89,7 +91,7 @@ const Profile = () => {
                 }}
               >
                 <Box p={3} pb={4} display="flex" justifyContent="space-between">
-                  <Typography variant="body">1. Create Account</Typography>
+                  <Typography variant="body">{t("steps_1")}</Typography>
                   <SvgIcon component={Done} color="success" />
                 </Box>
               </Paper>
@@ -98,14 +100,14 @@ const Profile = () => {
             <Grid item xs={12} md={4}>
               <Paper>
                 <Box display="flex" justifyContent="space-between" p={3}>
-                  <Typography>2. Enter The Market</Typography>
+                  <Typography>{t("steps_2")}</Typography>
                   <Button
                     size="small"
                     onClick={() => {
                       router.push("/investnow");
                     }}
                   >
-                    Make a Deposit
+                    {t("steps_2_btn")}
                   </Button>
                 </Box>
               </Paper>
@@ -114,14 +116,14 @@ const Profile = () => {
             <Grid item xs={12} md={4}>
               <Paper>
                 <Box p={3} display="flex" justifyContent="space-between">
-                  <Typography>3. Start Pro Trading</Typography>
+                  <Typography>{t("steps_3")}</Typography>
                   <Button
                     size="small"
                     onClick={() => {
                       router.push("/protrading");
                     }}
                   >
-                    Pro Trading
+                    {t("steps_3_btn")}
                   </Button>
                 </Box>
               </Paper>
@@ -134,7 +136,7 @@ const Profile = () => {
             router.push("/dashboard");
           }}
         >
-          Go To Dashboard
+          {t("go_to_dash")}
         </Button>
 
         <Box my={2}>
@@ -148,7 +150,7 @@ const Profile = () => {
 
         <Paper>
           <Box my={2} p={3}>
-            <Typography my={2}>Profile</Typography>
+            <Typography my={2}>{t("profile")}</Typography>
             <Box display="flex">
               <Box mx={2}>
                 <Avatar>Z</Avatar>
@@ -157,34 +159,34 @@ const Profile = () => {
               <Box>
                 <Box>
                   <Typography mb={1} color="GrayText" variant="subtitle2">
-                    Account:
+                    {t("account")}
                   </Typography>
                   <Typography>{currentUser.email}</Typography>
                 </Box>
                 <Box my={1}>
                   <Typography color="GrayText" variant="subtitle2">
-                    Status:
+                    {t("status")}
                   </Typography>
                   <Box>
                     <Box display="flex">
                       <SvgIcon component={CheckCircle} color="success" />
-                      <Typography>Zipo-Aid Starter</Typography>
+                      <Typography>{t("zipo_starter")}</Typography>
                     </Box>
                     <Box display="flex">
                       <SvgIcon component={Cancel} color="error" />
-                      <Typography>Zipo-Aid User</Typography>
+                      <Typography>{t("zipo_user")}</Typography>
                     </Box>
                     <Box display="flex">
                       <SvgIcon component={Cancel} color="error" />
-                      <Typography>Zipo-Aid VIP</Typography>
+                      <Typography>{t("zipo_vip")}</Typography>
                     </Box>
                   </Box>
                 </Box>
               </Box>
             </Box>
             <Box>
-              <Button>Settings</Button>
-              <Button onClick={handleLogOut}>Logout</Button>
+              {/* <Button>Settings</Button> */}
+              <Button onClick={handleLogOut}>{t("log_out")}</Button>
             </Box>
           </Box>
         </Paper>

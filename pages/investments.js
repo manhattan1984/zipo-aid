@@ -1,12 +1,14 @@
 import { CloudCircleSharp } from "@mui/icons-material";
 import { Box, Paper, SvgIcon, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const Investments = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Typography my={4} variant="h4">
-        Investments
+        {t("investments")}
       </Typography>
       <Box
         display="flex"
@@ -20,7 +22,7 @@ const Investments = () => {
         <Paper>
           <Box pt={7} pb={15}>
             <Typography pb={2} variant="h5" color="GrayText">
-              You have made no investments recently
+              {t("no_investments")}
             </Typography>
             <SvgIcon fontSize="large" component={CloudCircleSharp} />
           </Box>

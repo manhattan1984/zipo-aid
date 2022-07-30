@@ -1,8 +1,10 @@
 import { Box, Container, Link, Paper, Typography } from "@mui/material";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../context/AuthContext";
 
 const Referrals = () => {
+  const { t } = useTranslation();
   const { getUsername, username } = useAuth();
   useEffect(() => {
     getUsername();
@@ -17,7 +19,7 @@ const Referrals = () => {
       >
         <Box p pb={3}>
           <Typography gutterBottom variant="h4">
-            Your Referral Link
+            {t("referral_link")}
           </Typography>
           <Link variant="caption">
             https://www.zipoaidinvestments/register/{username}

@@ -6,8 +6,10 @@ import SignUpAppbar from "../../components/SignUpAppbar";
 import { SignUpTextField, SignUpButton } from "../../styles/styles";
 import { useSnackbar } from "notistack";
 import { sendEmail } from "../../backend/herotofu";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
   const emailRef = useRef();
   const userNameRef = useRef();
   const firstNameRef = useRef();
@@ -26,7 +28,7 @@ const Register = () => {
     e.preventDefault();
 
     if (passwordRef.current.value !== confirmPasswordRef.current.value) {
-      enqueueSnackbar("Passwords do not match");
+      enqueueSnackbar(t("no_match_password"));
     }
 
     if (
@@ -37,7 +39,7 @@ const Register = () => {
         lastNameRef.current.value
       )
     ) {
-      enqueueSnackbar("Please Complete the form");
+      enqueueSnackbar(t("complete_form"));
     }
 
     try {
@@ -53,7 +55,7 @@ const Register = () => {
       correct
         ? router.push("/profile") &&
           sendEmail({ email: emailRef.current.value }, REGISTER_FORM_ENDPOINT)
-        : enqueueSnackbar("Please Fill the Form correctly");
+        : enqueueSnackbar(t("fill_form"));
     } catch (error) {
       setError("Failed to create an account");
       console.log(error);
@@ -87,7 +89,7 @@ const Register = () => {
             variant="standard"
             fullWidth
             type="email"
-            label="Enter your email"
+            label={t("email")}
             inputRef={emailRef}
           />
         </Box>

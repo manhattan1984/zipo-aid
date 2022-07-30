@@ -6,8 +6,10 @@ import SignUpAppbar from "../../components/SignUpAppbar";
 import { SignUpTextField, SignUpButton } from "../../styles/styles";
 import { useSnackbar } from "notistack";
 import { sendEmail } from "../../backend/herotofu";
+import { useTranslation } from "react-i18next";
 
 const Register = () => {
+  const { t } = useTranslation();
   const emailRef = useRef();
   const userNameRef = useRef();
   const firstNameRef = useRef();

@@ -5,8 +5,10 @@ import { useAuth } from "../context/AuthContext";
 import SignUpAppbar from "../components/SignUpAppbar";
 import { SignUpButton, SignUpTextField } from "../styles/styles";
 import { useSnackbar } from "notistack";
+import { useTranslation } from "react-i18next";
 
 const Signin = () => {
+  const { t } = useTranslation();
   const emailRef = useRef();
   const passwordRef = useRef();
   const { logIn } = useAuth();
@@ -28,7 +30,7 @@ const Signin = () => {
       );
       correct
         ? router.push("/profile")
-        : enqueueSnackbar("Invalid Email or Password", { variant: "error" })``;
+        : enqueueSnackbar(t("invalid_email"), { variant: "error" })``;
     } catch (error) {
       setError("Invalid username or password");
       console.log(error);
@@ -45,23 +47,27 @@ const Signin = () => {
       />
       <Container maxWidth="sm">
         <Box textAlign="center" m>
-          <Typography variant="h4">Log In</Typography>
+          <Typography variant="h4">{t("sign_in")}</Typography>
           <Box display="flex" justifyContent="center">
             <Typography variant="subtitle1" mr>
-              Don&lsquo;t have an account?
+              {t("no_account")}
             </Typography>
-            <Typography variant="subtitle1">Register now for free</Typography>
+            <Typography variant="subtitle1">{t("register_now")}</Typography>
           </Box>
         </Box>
-        <SignUpTextField variant="standard" label="Email" inputRef={emailRef} />
+        <SignUpTextField
+          variant="standard"
+          label={t("email")}
+          inputRef={emailRef}
+        />
         <SignUpTextField
           variant="standard"
           type="password"
-          label="Password"
+          label={t("password")}
           inputRef={passwordRef}
         />
         <Box display="flex" justifyContent="flex-end" width="100%" mt={2}>
-          <Button size="small">Forgot Password?</Button>
+          <Button size="small">{t("forgot_password")}</Button>
         </Box>
 
         <Box textAlign="center">
@@ -71,8 +77,7 @@ const Signin = () => {
             variant="caption"
             color="GrayText"
           >
-            This site is protected by hCaptcha and its Privacy Policy and Terms
-            of Service apply.{" "}
+            {t("privacy")}
           </Typography>
         </Box>
 
@@ -84,7 +89,7 @@ const Signin = () => {
           variant="contained"
           onClick={handleSubmit}
         >
-          Sign In
+          {t("sign_in")}
         </SignUpButton>
         <SignUpButton
           fullWidth
@@ -92,7 +97,7 @@ const Signin = () => {
             router.push("/register");
           }}
         >
-          Register
+          {t("register")}
         </SignUpButton>
       </Container>
     </>
