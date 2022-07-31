@@ -47,7 +47,7 @@ const Mission = () => {
       <Typography my>{t("mission_body")}</Typography>
 
       {missionItems.map(({ title, items }) => (
-        <MissionSection title={title} items={items} />
+        <MissionSection key={title} title={title} items={items} />
       ))}
     </>
   );
