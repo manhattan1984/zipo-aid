@@ -1,6 +1,7 @@
 import { Typography, Container } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import Mission from "../components/Mission";
 
 const About = () => {
   const { t } = useTranslation();
@@ -14,6 +15,8 @@ const About = () => {
       <Typography>{t("about_2")} </Typography>
       <br />
       <Typography>{t("about_3")}</Typography>
+
+      <Mission />
     </Container>
   );
 };

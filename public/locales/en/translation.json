@@ -134,7 +134,7 @@
 
   "submit": "Submit",
 
-  "address": "Address: 1900 Fifth Avenue North Birmingham, Alabama, USA",
+  "address": "Address: 3333 Lee Parkway 671A dallas, USA",
   "t_c_title": "Terms and Conditions",
   "t_c_sub": "Please read the guidelines below",
   "t_c_caption": "In using this website you are deemed to have read and agreed to the following terms and conditions: ",
@@ -149,5 +149,30 @@
   "d_l_liability": " Disclaimer & Limitation of liability",
   "d_l_body": "We reserve the right to change the rules, commissions and rates of the program at any time and at our sole discretion without notice, especially in order to respect the integrity of the members' interests as a whole. You agree that it is your sole responsibility to review the current terms.",
   "goal_title": "Make your goal come through",
-  "goal_body": "Let's help you save your future and stress with the power of diversified asset management system."
+  "goal_body": "Let's help you save your future and stress with the power of diversified asset management system.",
+
+  "location": "Location",
+  "mail_us": "Mail Us",
+  "our_email": "zipoaidinvestmentz@gmail.com",
+  "live_chat": "Live Chat",
+  "chat_us": "Chat With Us 24/7",
+
+  "mission_statement": "Our Mission Statement",
+  "our_mission": "Our Mission",
+  "mission_body": "We are a global private markets investor with strong trading roots and a long, well-established track record. We are committed to building long-term relationships with our investors, investment partners and colleagues based on trust, openness, respect and the highest standards of integrity and professionalism.",
+  "mission_title_1": "We will be the private markets partner of choice for our investors by:",
+  "m_t_a": "Generating superior, long-term investment returns",
+  "m_t_b": "Ensuring that our interests are aligned with theirs",
+  "m_t_c": "Working collaboratively and openly to exceed expectations through best-in-class private markets solutions, investor reporting and client service",
+
+  "mission_title_2": "We will be a preferred investment partner by:",
+  "m_t_d": "Employing a professional, fact-based investment approach grounded in a deep understanding of private markets",
+  "m_t_e": "Being a trusted, collaborative, long-term partner",
+  "m_t_f": "Providing a global investment perspective informed by our long and successful history of private markets investing",
+
+  "mission_title_3": "We will attract, develop and retain exceptional professionals by:",
+  "m_t_g": "Providing and reinforcing a one-team culture that is both supportive and challenging",
+  "m_t_h": "Ensuring that our interactions are founded on honesty and mutual respect",
+  "m_t_i": "Expecting, recognizing and celebrating excellence in everything we do",
+  "accept_t_c": "By clicking the checkbox, You accept our terms and conditions"
 }
