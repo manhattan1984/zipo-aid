@@ -12,9 +12,10 @@
   "referrals": "Referrals",
   "log_out": "Log Out",
 
-  "turkish": "TR",
-  "spanish": "ES",
-  "portuguese": "PT",
+  "turkish": "Turkish",
+  "spanish": "Spanish",
+  "portuguese": "Portuguese",
+  "english": "English",
 
   "about": "About",
   "about_us": "About Us",
@@ -131,5 +132,22 @@
   "complete_form": "Please Complete the form",
   "fill_form": "Please Fill the form correctly",
 
-  "submit": "Submit"
+  "submit": "Submit",
+
+  "address": "Address: 1900 Fifth Avenue North Birmingham, Alabama, USA",
+  "t_c_title": "Terms and Conditions",
+  "t_c_sub": "Please read the guidelines below",
+  "t_c_caption": "In using this website you are deemed to have read and agreed to the following terms and conditions: ",
+  "privacy_statement": "Privacy Statement",
+  "privacy_body": "Zipo Aid Investments Limited knows that you care how information about you is used and shared. Hence we make a strong commitment to protect and respect the privacy principles regarding the information that you provide. All the data given by a member to VOGUE CAPITALS Limited will be only privately used and not disclosed to any third parties. We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by this Company will only be in connection with the provision of agreed services. ",
+  "guidance_title": " Guidance & Professional advice",
+  "guidance_body": "Trading carry a high degree of risk, and may not be suitable for all investors. Before deciding to invest in VOGUE CAPITALS Limited you should carefully consider your financial condition and your level of experience. You should be aware of all the risks associated with trading and seek advice from an independent financial adviser if you have any doubts. The possibility exists that you could sustain a loss of some or all of your initial investment and therefore you should not invest money that you cannot afford to lose. You are investing at your own risk and you agree that a past performance is not a guarantee for the same future performance. ",
+  "use_of_site": "Use Of Site",
+  "u_o_s_body": " SPAM violators will be permanently removed from the site with immediate effect. VOGUE CAPITALS Limited reserves the right to accept or decline any member for membership without explanation.",
+  "r_g_terms_title": " Responsibilities & General Terms",
+  "r_g_body": "Zipo Aid Invesments Limited is available only to the members of the site. You agree to be of legal age in your country to join this site and in all the cases your minimum age must be 18 years. Every deposit is considered to be a private transaction between VOGUE CAPITALS Limited and its member.",
+  "d_l_liability": " Disclaimer & Limitation of liability",
+  "d_l_body": "We reserve the right to change the rules, commissions and rates of the program at any time and at our sole discretion without notice, especially in order to respect the integrity of the members' interests as a whole. You agree that it is your sole responsibility to review the current terms.",
+  "goal_title": "Make your goal come through",
+  "goal_body": "Let's help you save your future and stress with the power of diversified asset management system."
 }

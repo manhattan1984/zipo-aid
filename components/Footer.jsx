@@ -1,4 +1,4 @@
-import { Email, Telegram } from "@mui/icons-material";
+import { Email, LocationCity, LocationOn, Telegram } from "@mui/icons-material";
 import {
   Box,
   Typography,
@@ -6,7 +6,9 @@ import {
   Divider,
   IconButton,
   SvgIcon,
+  Link as MuiLink,
 } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +16,47 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const router = useRouter();
   const { t } = useTranslation();
+
+  const FooterLinks = ({ link, text }) => {
+    return (
+      <Link href={link}>
+        <MuiLink color="#fff">
+          <Typography my variant="body2">{text}</Typography>
+        </MuiLink>
+      </Link>
+    );
+  };
+
+  const aboutLinks = [
+    {
+      link: "/about",
+      text: t("about_us"),
+    },
+    {
+      link: "/contact",
+      text: t("contact_us"),
+    },
+    {
+      link: "/",
+      text: t("faqs"),
+    },
+  ];
+
+  const legalLinks = [
+    {
+      link: "/privacy",
+      text: t("privacy_policy"),
+    },
+    {
+      link: "/privacy",
+      text: t("terms_of_service"),
+    },
+    {
+      link: "/privacy",
+      text: t("cert_of_inc"),
+    },
+  ];
+
   return (
     <Box
       color="white"
@@ -29,40 +72,37 @@ const Footer = () => {
             {t("about")}
           </Typography>
 
-          <Typography
-            variant="body2"
-            onClick={() => {
-              router.push("/about");
-            }}
-          >
-            {t("about_us")}
-          </Typography>
-          <Typography variant="body2" my>
-            {t("contact_us")}
-          </Typography>
-          <Typography variant="body2">FAQs</Typography>
+          {aboutLinks.map(({ link, text }) => (
+            <FooterLinks link={link} text={text} />
+          ))}
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Typography variant="h6" my={2}>
             {t("legal")}
           </Typography>
 
-          <Typography variant="body2">{t("privacy_policy")}</Typography>
-          <Typography variant="body2" my>
-            {t("terms_of_service")}
-          </Typography>
-          <Typography variant="body2">{t("cert_of_inc")}</Typography>
+          {legalLinks.map(({ link, text }) => (
+            <FooterLinks link={link} text={text} />
+          ))}
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Typography variant="h6">{t("contact")}</Typography>
-          <IconButton>
-            <Telegram color="primary" />
-          </IconButton>
-          <Box display="flex" ml>
-            <SvgIcon component={Email} color="primary" />
-            <Typography ml variant="caption">
-              ZipoAidInvestmentz@gmail.com
-            </Typography>
+          <Box>
+            <IconButton>
+              <Telegram color="primary" />
+            </IconButton>
+            <Box display="flex" ml>
+              <SvgIcon component={Email} color="primary" />
+              <Typography ml variant="body">
+                ZipoAidInvestmentz@gmail.com
+              </Typography>
+            </Box>
+            <Box display="flex" my ml>
+              <SvgIcon component={LocationOn} color="primary" />
+              <Typography ml variant="body">
+                {t("address")}
+              </Typography>
+            </Box>
           </Box>
         </Grid>
       </Grid>

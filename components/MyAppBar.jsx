@@ -177,7 +177,7 @@ const MyAppBar = () => {
   const langs = [
     {
       value: "en",
-      label: "En",
+      label: t("english"),
     },
     {
       value: "tr",
@@ -207,7 +207,7 @@ const MyAppBar = () => {
             </Grid>
             {/* Language */}
             <Grid item xs={3} md={2}>
-              {/* <TextField
+              <TextField
                 inputRef={langRef}
                 InputProps={{
                   startAdornment: (
@@ -218,8 +218,9 @@ const MyAppBar = () => {
                 }}
                 select
                 defaultValue="en"
-                onChange={() => {
-                  console.log(langRef.current.value);
+                onChange={(e) => {
+                  // console.log(langRef.current.value);
+                  i18next.changeLanguage(e.target.value);
                 }}
               >
                 {langs.map(({ value, label }) => (
@@ -227,7 +228,7 @@ const MyAppBar = () => {
                     {label}
                   </MenuItem>
                 ))}
-              </TextField> */}
+              </TextField>
               <Box display="flex">
                 {/* {langs.map(({ value, label }) => (
                   <Typography

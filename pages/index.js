@@ -170,13 +170,13 @@ export default function Home() {
             <Typography my={3}>{t("support_body")}</Typography>
 
             <Box display="flex" my={3} pb={3}>
-              <Button>t{"faqs"}</Button>
+              <Button>{t("faqs")}</Button>
               <Button
                 onClick={() => {
                   router.push("/register");
                 }}
               >
-                {t("get_tarted")}
+                {t("get_started")}
               </Button>
             </Box>
           </Box>
