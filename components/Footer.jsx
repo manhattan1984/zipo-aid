@@ -21,7 +21,9 @@ const Footer = () => {
     return (
       <Link href={link}>
         <MuiLink color="#fff">
-          <Typography my variant="body2">{text}</Typography>
+          <Typography my variant="body2">
+            {text}
+          </Typography>
         </MuiLink>
       </Link>
     );
@@ -73,7 +75,7 @@ const Footer = () => {
           </Typography>
 
           {aboutLinks.map(({ link, text }) => (
-            <FooterLinks link={link} text={text} />
+            <FooterLinks key={text} link={link} text={text} />
           ))}
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
