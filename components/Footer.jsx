@@ -84,7 +84,7 @@ const Footer = () => {
           </Typography>
 
           {legalLinks.map(({ link, text }) => (
-            <FooterLinks link={link} text={text} />
+            <FooterLinks key={text} link={link} text={text} />
           ))}
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
