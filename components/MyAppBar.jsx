@@ -22,6 +22,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import SettingsIcon from "@mui/icons-material/Settings";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 // import Menu, { LINKS } from "./Menu";
@@ -156,6 +157,12 @@ const MyAppBar = () => {
       link: "/referrals",
       section: "Others",
       icon: Group,
+    },
+    {
+      name: t("settings"),
+      link: "/settings",
+      section: "Others",
+      icon: SettingsIcon,
     },
     {
       name: t("log_out"),

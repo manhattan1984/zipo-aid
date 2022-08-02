@@ -44,7 +44,7 @@
   "password": "Enter Password",
   "c_password": "Confirm Password",
   "referred_by": "Referred By",
-  "register_caption": " By clicking the &apos;Register account&lsquo; button you agree to our Privacy Policy and Terms of Service.",
+  "register_caption": " By clicking the 'Register' button you agree to our Privacy Policy and Terms of Service.",
 
   "zipo_aid_investments": "Zipo Aid Investments",
   "about_1": "Zipo Aid Investment Trader provides reliable, consistent and profitable financial assistance to our clients around the world. Investments in our trading platforms are securely secured and managed only by our experienced traders to ensure better risk management and profitable trading.",
@@ -174,5 +174,15 @@
   "m_t_g": "Providing and reinforcing a one-team culture that is both supportive and challenging",
   "m_t_h": "Ensuring that our interactions are founded on honesty and mutual respect",
   "m_t_i": "Expecting, recognizing and celebrating excellence in everything we do",
-  "accept_t_c": "By clicking the checkbox, You accept our terms and conditions"
+  "accept_t_c": "By clicking the checkbox, You accept our terms and conditions",
+
+  "reset_email_message": "Password Reset Link Has Been Sent To Your Email",
+
+  "settings": "Settings",
+  "bitcoin_wallet": "BTC Wallet",
+  "ethereum_wallet": "ETH Wallet",
+  "bitcoin_cash_wallet": "BCH Wallet",
+  "cardano_wallet": "ADA Wallet",
+  "ripple_wallet": "XRP Wallet",
+  "save": "Save Settings"
 }

@@ -15,6 +15,7 @@ import {
   browserSessionPersistence,
   createUserWithEmailAndPassword,
   getAuth,
+  sendPasswordResetEmail,
   setPersistence,
   signInWithEmailAndPassword,
   signOut,
@@ -53,6 +54,14 @@ export function firebaseLogIn(email, password) {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorMessage);
+  }
+}
+
+export function firebaseResetEmail(email) {
+  try {
+    sendPasswordResetEmail(auth, email);
+  } catch (error) {
+    console.log(error);
   }
 }
 

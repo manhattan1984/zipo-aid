@@ -11,7 +11,7 @@ const Signin = () => {
   const { t } = useTranslation();
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { logIn } = useAuth();
+  const { logIn, resetEmail } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [correct, setCorrect] = useState();
@@ -67,7 +67,16 @@ const Signin = () => {
           inputRef={passwordRef}
         />
         <Box display="flex" justifyContent="flex-end" width="100%" mt={2}>
-          <Button size="small">{t("forgot_password")}</Button>
+          <Button
+            onClick={() => {
+              resetEmail(emailRef.current.value);
+              console.log(emailRef.current.value)
+              enqueueSnackbar(t("reset_email_message"))
+            }}
+            size="small"
+          >
+            {t("forgot_password")}
+          </Button>
         </Box>
 
         <Box textAlign="center">

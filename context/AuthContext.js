@@ -12,6 +12,7 @@ import {
   firebaseSignUp,
   addWithdrawalToDatabase,
   getUserDetails,
+  firebaseResetEmail,
 } from "../backend/firebase";
 
 const AuthContext = createContext();
@@ -79,6 +80,10 @@ export function AuthProvider({ children }) {
       console.log(error);
     }
     return false;
+  }
+
+  async function resetEmail(email) {
+    firebaseResetEmail(email);
   }
 
   async function logOut() {
@@ -184,6 +189,7 @@ export function AuthProvider({ children }) {
     signUp,
     logIn,
     logOut,
+    resetEmail,
     getBalances,
     usdBalance,
     changePassword,
