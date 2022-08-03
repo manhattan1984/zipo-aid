@@ -24,7 +24,7 @@ const Registration = () => {
   const lastNameRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-  const referralRef = useRef();
+  const referralRef = useRef("");
   const { signUp } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);

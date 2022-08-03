@@ -184,5 +184,6 @@
   "bitcoin_cash_wallet": "BCH Wallet",
   "cardano_wallet": "ADA Wallet",
   "ripple_wallet": "XRP Wallet",
-  "save": "Save Settings"
+  "save": "Save Settings",
+  "saved_settings": "Saved Settings!"
 }

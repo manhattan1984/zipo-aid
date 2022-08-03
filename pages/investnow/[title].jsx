@@ -12,7 +12,10 @@ import Ethereum from "../../public/qr-codes/ethereum.jpeg";
 import Litecoin from "../../public/qr-codes/litecoin.jpeg";
 import Solana from "../../public/qr-codes/solana.jpeg";
 import Xrp from "../../public/qr-codes/xrp.jpeg";
+import Ada from "../../public/qr-codes/ada.jpeg";
+
 import { useTranslation } from "react-i18next";
+
 
 const DEPOSIT_FORM_ENDPOINT =
   "https://public.herotofu.com/v1/940e2700-0cdb-11ed-9bdb-53c785fa3343";
@@ -48,6 +51,11 @@ const wallets = [
     address: "eYNPJUg82A2XaasHs6T9goCoeGq3DVCBV6oz5pxYaq2",
     code: Solana,
   },
+  {
+    name: "Cardano",
+    address: "addr1qxvu85hd52qh9cgknvcvfuxp4nhj7zr4qcsh7zl28ndat23kalfjzl6vsd783s948wyn5su2ug0t020vwadvudq026tqzcvqk5",
+    code: Ada
+  }
 ];
 const ShowPayment = ({ name, amount }) => {
   const wallet = wallets.find((wallet) => wallet.name === name);

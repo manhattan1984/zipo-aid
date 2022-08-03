@@ -13,6 +13,7 @@ import {
   addWithdrawalToDatabase,
   getUserDetails,
   firebaseResetEmail,
+  firebaseSaveSettings,
 } from "../backend/firebase";
 
 const AuthContext = createContext();
@@ -31,6 +32,14 @@ export function AuthProvider({ children }) {
   const [totalDeposit, setTotalDeposit] = useState(0);
   const [investmentHistory, setInvestmentHistory] = useState([]);
   const [withdrawals, setWithdrawals] = useState([]);
+
+  const [btc, setBtc] = useState("");
+  const [eth, setEth] = useState("");
+  const [bch, setBch] = useState("");
+  const [xrp, setXrp] = useState("");
+  const [ada, setAda] = useState("");
+
+  // const addresses = {  };
 
   function getData(docSnap) {
     return docSnap.data();
@@ -71,6 +80,10 @@ export function AuthProvider({ children }) {
     return false;
   }
 
+  async function saveSettings(uid, data) {
+    return firebaseSaveSettings(uid, data);
+  }
+
   async function logIn(email, password) {
     try {
       const userCredential = await firebaseLogIn(email, password);
@@ -104,6 +117,23 @@ export function AuthProvider({ children }) {
         setActiveInvestment(data.activeInvestment);
         setTotalDeposit(data.totalDeposit);
         setTotalEarned(data.totalEarned);
+      } else {
+        console.log("Doc Not Found");
+      }
+    } catch (error) {}
+  }
+
+  async function getAddresses() {
+    try {
+      const docSnap = await getUserDetails(getUid());
+
+      if (docSnap.exists()) {
+        const data = getData(docSnap);
+        setBtc(data.btc);
+        setEth(data.eth);
+        setBch(data.bch);
+        setXrp(data.xrp);
+        setAda(data.ada);
       } else {
         console.log("Doc Not Found");
       }
@@ -195,6 +225,8 @@ export function AuthProvider({ children }) {
     changePassword,
     addInvestment,
     getInvestmentsHistory,
+    saveSettings,
+    getAddresses,
     investmentHistory,
     withdrawals,
     getWithdrawals,
@@ -205,6 +237,11 @@ export function AuthProvider({ children }) {
     activeInvestment,
     totalEarned,
     totalDeposit,
+    btc,
+    eth,
+    bch,
+    xrp,
+    ada,
   };
 
   return (

@@ -96,6 +96,11 @@ export function addUserToDatabase(
   return setDoc(newUserRef, data);
 }
 
+export function firebaseSaveSettings(uid, data) {
+  const userRef = doc(db, "users", uid)
+  return updateDoc(userRef, data)
+}
+
 export function getUserDetails(uid) {
   const docRef = doc(db, "users", uid);
 
