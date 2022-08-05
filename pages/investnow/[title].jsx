@@ -13,6 +13,8 @@ import Litecoin from "../../public/qr-codes/litecoin.jpeg";
 import Solana from "../../public/qr-codes/solana.jpeg";
 import Xrp from "../../public/qr-codes/xrp.jpeg";
 import Ada from "../../public/qr-codes/ada.jpeg";
+import USDT from "../../public/qr-codes/USDT.jpeg";
+
 
 import { useTranslation } from "react-i18next";
 
@@ -55,7 +57,10 @@ const wallets = [
     name: "Cardano",
     address: "addr1qxvu85hd52qh9cgknvcvfuxp4nhj7zr4qcsh7zl28ndat23kalfjzl6vsd783s948wyn5su2ug0t020vwadvudq026tqzcvqk5",
     code: Ada
-  }
+  },
+  {name: "USDT",
+address: "0x2DCD8d38c0De3e9841D86BC15Cc90A1D4FdC8D99",
+code: USDT}
 ];
 const ShowPayment = ({ name, amount }) => {
   const wallet = wallets.find((wallet) => wallet.name === name);
