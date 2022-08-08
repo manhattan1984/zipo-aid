@@ -15,9 +15,7 @@ import Xrp from "../../public/qr-codes/xrp.jpeg";
 import Ada from "../../public/qr-codes/ada.jpeg";
 import USDT from "../../public/qr-codes/USDT.jpeg";
 
-
 import { useTranslation } from "react-i18next";
-
 
 const DEPOSIT_FORM_ENDPOINT =
   "https://public.herotofu.com/v1/940e2700-0cdb-11ed-9bdb-53c785fa3343";
@@ -55,18 +53,20 @@ const wallets = [
   },
   {
     name: "Cardano",
-    address: "addr1qxvu85hd52qh9cgknvcvfuxp4nhj7zr4qcsh7zl28ndat23kalfjzl6vsd783s948wyn5su2ug0t020vwadvudq026tqzcvqk5",
-    code: Ada
+    address:
+      "addr1qxvu85hd52qh9cgknvcvfuxp4nhj7zr4qcsh7zl28ndat23kalfjzl6vsd783s948wyn5su2ug0t020vwadvudq026tqzcvqk5",
+    code: Ada,
   },
-  {name: "USDT",
-address: "0x2DCD8d38c0De3e9841D86BC15Cc90A1D4FdC8D99",
-code: USDT}
+  {
+    name: "USDT",
+    address: "0x2DCD8d38c0De3e9841D86BC15Cc90A1D4FdC8D99",
+    code: USDT,
+  },
 ];
 const ShowPayment = ({ name, amount }) => {
   const wallet = wallets.find((wallet) => wallet.name === name);
 
   const { t } = useTranslation();
-
   return (
     <>
       <Image src={wallet.code} />
@@ -89,7 +89,7 @@ const Invest = () => {
   const amountRef = useRef();
   const cryptoRef = useRef();
   const [showOrder, setShowOrder] = useState(false);
-  const { currentUser } = useAuth();
+  const { currentUser, addInvestment } = useAuth();
 
   const clearFields = () => {
     amountRef.current.value = null;
@@ -155,6 +155,7 @@ const Invest = () => {
                   DEPOSIT_FORM_ENDPOINT
                 );
                 // clearFields();
+                addInvestment(plan.title);
               }}
             >
               {t("submit")}
