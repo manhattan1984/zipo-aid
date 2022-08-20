@@ -198,6 +198,14 @@ const MyAppBar = () => {
       value: "pt",
       label: t("portuguese"),
     },
+    {
+      value: "ru",
+      label: "Russian",
+    },
+    {
+      value: "uk",
+      label: "Ukrainian",
+    },
   ];
 
   return (
@@ -226,7 +234,7 @@ const MyAppBar = () => {
                 select
                 defaultValue="en"
                 onChange={(e) => {
-                  // console.log(langRef.current.value);
+                  console.log(e.target.value);
                   i18next.changeLanguage(e.target.value);
                 }}
               >
