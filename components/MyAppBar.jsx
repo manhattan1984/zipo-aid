@@ -234,7 +234,6 @@ const MyAppBar = () => {
                 select
                 defaultValue="en"
                 onChange={(e) => {
-                  console.log(e.target.value);
                   i18next.changeLanguage(e.target.value);
                 }}
               >

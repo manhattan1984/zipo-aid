@@ -185,5 +185,25 @@
   "cardano_wallet": "ADA Wallet",
   "ripple_wallet": "XRP Wallet",
   "save": "Save Settings",
-  "saved_settings": "Saved Settings!"
+  "saved_settings": "Saved Settings!",
+
+  "russian": "Russian",
+  "ukrainian": "Ukrainian",
+  "faq1-t": "I WISH TO INVEST WITH ZIPOAIDINVESTMENTS.COM BUT I DON’T HAVE AN ANY CRYPTO WALLET ACCOUNT. WHAT SHOULD I DO ?",
+  "faq1-b": "You can open a free crypto wallet account here: www.binance.com",
+
+  "faq2_t": "WHAT IS THE MINIMUM/MAXIMUM PAYMENT RULES?",
+  "faq2_b": "Bitcoin is 10$ maximum has no limits.",
+
+  "faq3_t": "WHICH CRYPTO WALLET DO YOU ACCEPT?",
+  "faq3_b": "We accept crypto currency such as btc, eth, usdt(bep20)  and so on…",
+
+  "faq4_t": "HOW CAN I WITHDRAW FUNDS?",
+  "faq4_b": "Login you your account using your username and password and check the withdrawal section.",
+
+  "faq5_t": "HOW LONG DOES IT TAKE FOR MY DEPOSIT TO BE ADDDED TO MY ACCOUNT?",
+  "faq5_b": "Your account will be updated as fast, as you deposited.",
+
+  "faq6_t": "HOW CAN I CHANGE MY EMAIL ADDRESS OR PASSWORD?",
+  "faq6_b": "Login into your zipoaidinvestments.com account and click on the “Account Information”. You can change your e-mail address and password there."
 }

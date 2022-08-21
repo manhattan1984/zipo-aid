@@ -147,5 +147,19 @@
   "amount": "Tutar",
   "no_account": "Hesabınız yok mu?",
   "copyright": "Tüm hakları saklıdır © 2022 Zipoaid. NMLS #1991139",
-  "get_started": "Başlamak"
+  "get_started": "Başlamak",
+  "faq6_t": "E -posta adresimi veya şifremi nasıl değiştirebilirim?",
+"faq5_t": "Depozitimin hesabıma eklenmesi ne kadar sürer?",
+"faq2_t": "Minimum/maksimum ödeme kuralları nedir?",
+"russian": "Rusça",
+"faq2_b": "Bitcoin, maksimum 10 $ sınırları yoktur.",
+"faq4_b": "Kullanıcı adınızı ve şifrenizi kullanarak hesabınıza giriş yapın ve para çekme bölümünü kontrol edin.",
+"faq3_b": "BTC, ETH, USDT (BEP20) vb. Gibi kripto para birimini kabul ediyoruz…",
+"ukrainian": "Ukrayna",
+"faq6_b": "ZipoaidInvestments.com hesabınıza giriş yapın ve “Hesap Bilgileri” ni tıklayın. Buradaki e-posta adresinizi ve şifrenizi değiştirebilirsiniz.",
+"faq4_t": "Fonları nasıl geri çekebilirim?",
+"faq1-b": "Ücretsiz bir kripto cüzdan hesabı buradan açabilirsiniz: www.binance.com",
+"faq1-t": "Zipoaidinvestments.com ile yatırım yapmak istiyorum ama herhangi bir kripto cüzdan hesabım yok. NE YAPMALIYIM ?",
+"faq3_t": "Hangi kripto cüzdanını kabul ediyorsunuz?",
+"faq5_b": "Hesabınız yatırıldığınız gibi hızlı bir şekilde güncellenecektir."
 }
