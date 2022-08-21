@@ -39,7 +39,7 @@ const Footer = () => {
       text: t("contact_us"),
     },
     {
-      link: "/",
+      link: "/faqs",
       text: t("faqs"),
     },
   ];

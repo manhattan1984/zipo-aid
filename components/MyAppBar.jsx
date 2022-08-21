@@ -200,11 +200,11 @@ const MyAppBar = () => {
     },
     {
       value: "ru",
-      label: "Russian",
+      label: t("russian"),
     },
     {
       value: "uk",
-      label: "Ukrainian",
+      label: t("ukrainian"),
     },
   ];
 

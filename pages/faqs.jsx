@@ -18,6 +18,9 @@ const FAQS = () => {
     };
     return (
       <Accordion
+        sx={{
+          my: 2,
+        }}
         expanded={expanded === "panel" + index}
         onChange={handleChange("panel" + index)}
       >
@@ -26,7 +29,15 @@ const FAQS = () => {
           aria-controls={"panel" + index + "bh-content"}
           id={"panel" + index + "bh-header"}
         >
-          <Typography variant="h6">{title}</Typography>
+          <Typography
+            variant="h6"
+            sx={{
+              fontFamily: "Raleway",
+              fontWeight: "bolder",
+            }}
+          >
+            {title}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography>{text}</Typography>
@@ -38,7 +49,7 @@ const FAQS = () => {
   const faqs = [
     {
       text: t("faq1-b"),
-      title: t("faq1-t"),
+      title: t("faq1-t") ,
     },
     {
       text: t("faq2_b"),
@@ -63,7 +74,15 @@ const FAQS = () => {
   ];
   return (
     <Container>
-      <Typography variant="h3">{t("faqs")}</Typography>
+      <Typography my={2} variant="h6" textAlign="center">
+        {t("faqs")}
+      </Typography>
+      <Typography variant="h3" textAlign="center">
+        {t("faq_full")}
+      </Typography>
+      <Typography variant="h3" textAlign="center">
+        {t()}
+      </Typography>
       {faqs.map(({ text, title }, index) => (
         <>
           <FaqItem key={index} text={text} title={title} index={index + 1} />

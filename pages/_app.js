@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={myTheme}>
       <CssBaseline />
-      <SnackbarProvider maxSnack={2}>
+      <SnackbarProvider maxSnack={1}>
         <AuthProvider>
           <MyAppBar />
           <Component {...pageProps} />

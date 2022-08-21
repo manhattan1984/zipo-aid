@@ -20,14 +20,35 @@ import Reuters from "../public/reuters.svg";
 import TheGuardian from "../public/theguardian.svg";
 import Bloomberg from "../public/bloomberg.svg";
 import { useTranslation } from "react-i18next";
+import { useSnackbar } from "notistack"
+import { useEffect, useState } from "react";
+import { Alert } from "@mui/material";
 
 export default function Home() {
   const router = useRouter();
   const { t } = useTranslation();
+
+  const [showAlert, setShowAlert] = useState(false)
+
+
+
+
+  useEffect(() => {
+    // const interval = setInterval(() => { setShowAlert(!showAlert) }, 3000)
+
+    // return () => clearInterval(interval)
+
+
+  })
   return (
     <>
       {/* <Container> */}
       <Box className={styles.hero}>
+        {/* {showAlert ? <Alert sx={{
+          position: "absolute"
+        }}>
+          Hi
+        </Alert> : null} */}
         <Grid container>
           <Grid item xs={12} md={6} color="white" m={2}>
             <Typography variant="h5">{t("hero_1")}</Typography>
