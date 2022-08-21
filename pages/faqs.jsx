@@ -66,7 +66,7 @@ const FAQS = () => {
       <Typography variant="h3">{t("faqs")}</Typography>
       {faqs.map(({ text, title }, index) => (
         <>
-          <FaqItem text={text} title={title} index={index + 1} />
+          <FaqItem key={index} text={text} title={title} index={index + 1} />
         </>
       ))}
     </Container>
