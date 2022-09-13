@@ -58,7 +58,7 @@ const wallets = [
     code: Ada,
   },
   {
-    name: "USDT",
+    name: "USDT (BEP20)",
     address: "0x2DCD8d38c0De3e9841D86BC15Cc90A1D4FdC8D99",
     code: USDT,
   },
