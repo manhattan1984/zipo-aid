@@ -34,21 +34,53 @@ export default function Home() {
 
 
   useEffect(() => {
-    // const interval = setInterval(() => { setShowAlert(!showAlert) }, 3000)
+    const interval = setInterval(() => { setShowAlert(!showAlert) }, 3000)
 
-    // return () => clearInterval(interval)
+    return () => clearInterval(interval)
 
 
   })
+  
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  
+
+  const getAlertText = () => {
+    const names = [
+      "David", "Susan", "Luke", "Ivanovich",
+      "Deniz", "Isra", "Emre", "Ekaterina", "Inessa", "Алла",
+      "Антоніна", "Francisco", "Santiago", "Afonso", "Isabella",
+      "Luca"
+    ]
+
+    const actions = [
+      "just deposited", "just withdrew", "just invested", "just recieved a bonus of"
+    ]
+
+    const amounts = [
+      1000, 2000, 10000
+    ]
+
+    const name = names[getRandomInt(names.length)]
+
+    const action = actions[getRandomInt(actions.length)]
+
+    const amount = getRandomInt(100000)
+
+    return `${name} ${action} $${amount}` 
+  }
+
   return (
     <>
       {/* <Container> */}
       <Box className={styles.hero}>
-        {/* {showAlert ? <Alert sx={{
-          position: "absolute"
+        {showAlert ? <Alert sx={{
+          position: "fixed",
+          width: "100%"
         }}>
-          Hi
-        </Alert> : null} */}
+          {getAlertText()}
+        </Alert> : null}
         <Grid container>
           <Grid item xs={12} md={6} color="white" m={2}>
             <Typography variant="h5">{t("hero_1")}</Typography>

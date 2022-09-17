@@ -8,10 +8,10 @@ const Document = () => {
       <Head>
         {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> */}
-        <link
+        {/* <link
           href="https://fonts.googleapis.com/css2?family=Lobster+Two:wght@700&family=Raleway&display=swap"
           rel="stylesheet"
-        />
+        /> */}
         <link rel="shortcut icon" href="zipo-aid.png" />
       </Head>
       <body>
