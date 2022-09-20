@@ -51,7 +51,21 @@ export default function Home() {
       "David", "Susan", "Luke", "Ivanovich",
       "Deniz", "Isra", "Emre", "Ekaterina", "Inessa", "Алла",
       "Антоніна", "Francisco", "Santiago", "Afonso", "Isabella",
-      "Luca"
+      "Luca", “Rodrigo”,
+“Naterade”,
+“Dave”,
+“George”,
+“Micheal”,
+“Farah”,
+“Jason”,
+“Thomas”,
+“Gary”,
+“Feldman”,
+“Francis”,
+“Herbert”,
+“George”,
+“Ruden”,
+“Herbert”
     ]
 
     const actions = [
@@ -62,13 +76,17 @@ export default function Home() {
       1000, 2000, 10000
     ]
 
+    const countries = ["Russia", "USA", "England", "Spain", "Ukraine", "Portugal", "Turkey" ]
+
     const name = names[getRandomInt(names.length)]
 
     const action = actions[getRandomInt(actions.length)]
 
+    const country = countries[getRandomInt(countries.length)]
+
     const amount = getRandomInt(100000)
 
-    return `${name} ${action} $${amount}` 
+    return `${name} from ${country} ${action} $${amount}` 
   }
 
   return (
