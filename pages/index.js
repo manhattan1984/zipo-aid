@@ -34,7 +34,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    const interval = setInterval(() => { setShowAlert(!showAlert) }, 5 * 60000)
+    const interval = setInterval(() => { setShowAlert(!showAlert) }, 10000)
 
     return () => clearInterval(interval)
 
