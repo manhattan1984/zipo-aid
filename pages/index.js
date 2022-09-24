@@ -105,11 +105,7 @@ export default function Home() {
 
     const amount = getRandomInt(100000)
 
-<<<<<<< HEAD
-    return `${name} ${action} $${amount}`
-=======
     return `${name} from ${country} ${action} $${amount}` 
->>>>>>> dc84fdd541723693f3f08188d2ff79e2d560a0f3
   }
 
   return (
