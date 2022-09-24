@@ -25,7 +25,7 @@ const investmentPlans = [
     percent: 9,
     time: "24HRS",
     min: "$500",
-    max: "$4,900",
+    max: "$4,999",
   },
   {
     title: "Beginner ",
