@@ -53,7 +53,7 @@ export default function Home() {
 
 
   useEffect(() => {
-    const interval = setInterval(() => { setShowAlert(!showAlert) }, 3000)
+    const interval = setInterval(() => { setShowAlert(!showAlert) }, 10000)
 
     return () => clearInterval(interval)
 
@@ -70,7 +70,21 @@ export default function Home() {
       "David", "Susan", "Luke", "Ivanovich",
       "Deniz", "Isra", "Emre", "Ekaterina", "Inessa", "Алла",
       "Антоніна", "Francisco", "Santiago", "Afonso", "Isabella",
-      "Luca"
+      "Luca", "Rodrigo",
+"Naterade",
+"Dave",
+"George",
+"Micheal",
+"Farah",
+"Jason",
+"Thomas",
+"Gary",
+"Feldman",
+"Francis",
+"Herbert",
+"George",
+"Ruden",
+"Herbert"
     ]
 
     const actions = [
@@ -81,13 +95,21 @@ export default function Home() {
       1000, 2000, 10000
     ]
 
+    const countries = ["Russia", "USA", "England", "Spain", "Ukraine", "Portugal", "Turkey" ]
+
     const name = names[getRandomInt(names.length)]
 
     const action = actions[getRandomInt(actions.length)]
 
+    const country = countries[getRandomInt(countries.length)]
+
     const amount = getRandomInt(100000)
 
+<<<<<<< HEAD
     return `${name} ${action} $${amount}`
+=======
+    return `${name} from ${country} ${action} $${amount}` 
+>>>>>>> dc84fdd541723693f3f08188d2ff79e2d560a0f3
   }
 
   return (
