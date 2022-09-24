@@ -114,7 +114,8 @@ export default function Home() {
       <Box className={styles.hero}>
         {showAlert ? <Alert sx={{
           position: "fixed",
-          width: "100%"
+          width: "100%",
+          zIndex: "tooltip"
         }}>
           {getAlertText()}
         </Alert> : null}
