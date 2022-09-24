@@ -5,6 +5,7 @@ import {
   Button,
   Grid,
   Divider,
+  Avatar
 } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
@@ -30,7 +31,25 @@ export default function Home() {
 
   const [showAlert, setShowAlert] = useState(false)
 
+  const reviews = [
+    { name: "Lincoln", body: t("review_1"), image: "https://images.unsplash.com/photo-1552642986-ccb41e7059e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" },
+    { name: "Marcus", body: t("review_2"), image: "https://images.unsplash.com/photo-1585807515950-bc46d934c28b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" },
+    { name: "Genevieve", body: t("review_3"), image: "https://images.unsplash.com/photo-1588887563897-7809995fe9b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=765&q=80" }
+  ]
 
+  const ReviewItem = ({ image, name, body }) => {
+    return (
+      <Grid item textAlign="center" xs={12} md={4}>
+        <Box justifyContent="center" display="flex">
+          <Avatar sx={{width: 86, height: 86}} src={image}  />
+        </Box>
+        <Typography variant="h5" my={2}>{name}</Typography>
+        <Typography variant="body1">{body}</Typography>
+
+        <Divider sx={{my: 2}} />
+      </Grid>
+    )
+  }
 
 
   useEffect(() => {
@@ -40,11 +59,11 @@ export default function Home() {
 
 
   })
-  
+
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
-  
+
 
   const getAlertText = () => {
     const names = [
@@ -68,7 +87,7 @@ export default function Home() {
 
     const amount = getRandomInt(100000)
 
-    return `${name} ${action} $${amount}` 
+    return `${name} ${action} $${amount}`
   }
 
   return (
@@ -195,6 +214,14 @@ export default function Home() {
           <Image src={TheGuardian} />
         </Box>
       </Box>
+
+      {/* Reviews */}
+
+      <Grid container spacing={2}>
+        {reviews.map(({ name, body, image }) => (
+        <ReviewItem name={name} body={body} image={image} key={name} />
+  ))}
+      </Grid>
 
       <Box display={{ md: "flex" }} sx={{ background: "#2a2d2f" }}>
         {/* <Image src={Signals} /> */}
