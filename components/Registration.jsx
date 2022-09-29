@@ -6,6 +6,10 @@ import {
   FormGroup,
   Grid,
   Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -15,6 +19,7 @@ import { SignUpTextField, SignUpButton } from "../styles/styles";
 import { useSnackbar } from "notistack";
 import { sendEmail } from "../backend/herotofu";
 import { useTranslation } from "react-i18next";
+import countries from "./countries";
 
 const Registration = () => {
   const { t } = useTranslation();
@@ -32,6 +37,17 @@ const Registration = () => {
   const router = useRouter();
   const { referral } = router.query;
   const { enqueueSnackbar } = useSnackbar();
+
+  const [country, setCountry] = useState("");
+  const [region, setRegion] = useState("");
+
+  const handleChangeCountry = (event) => {
+    setCountry(event.target.value);
+  };
+
+  const handleChangeRegion = (event) => {
+    setRegion(event.target.value);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -75,7 +91,7 @@ const Registration = () => {
   //   Affect
   useEffect(() => {
     console.log(referral);
-    referralRef ? (referralRef.current.value = referral) : null;
+    referralRef ? (referralRef.current.value = referral || "") : "";
   });
   const REGISTER_FORM_ENDPOINT =
     "https://public.herotofu.com/v1/64f91510-0cdb-11ed-9bdb-53c785fa3343";
@@ -146,11 +162,52 @@ const Registration = () => {
           inputRef={confirmPasswordRef}
         />
 
+        <Box mt={4}>
+          <FormControl sx={{ mr: 2 }}>
+            <InputLabel>{t("country")}</InputLabel>
+            <Select
+              sx={{ width: "300px" }}
+              value={country}
+              variant="standard"
+              onChange={handleChangeCountry}
+            >
+              {countries.map((country) => (
+                <MenuItem
+                  value={country.countryName}
+                  key={country.countryShortCode}
+                >
+                  {country.countryName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <FormControl sx={{ mt: 2 }}>
+            <InputLabel>{t("region")}</InputLabel>
+            <Select
+              variant="standard"
+              value={region}
+              onChange={handleChangeRegion}
+              disabled={!country}
+              sx={{ width: "300px" }}
+            >
+              {country
+                ? countries
+                    .find(({ countryName }) => countryName === country)
+                    .regions.map((region) => (
+                      <MenuItem value={region.name} key={region.shortCode}>
+                        {region.name}
+                      </MenuItem>
+                    ))
+                : []}
+            </Select>
+          </FormControl>
+        </Box>
+
         <SignUpTextField
           variant="standard"
           fullWidth
           label={t("referred_by")}
-          inputRef={referralRef}
+          inputRef={referralRef || ""}
         />
 
         <Box m={4}>

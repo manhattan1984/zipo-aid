@@ -43,7 +43,7 @@
   "l_name": "Last Name",
   "password": "Enter Password",
   "c_password": "Confirm Password",
-  "referred_by": "Referred By",
+  "referred_by": "Referral (Optional)",
   "register_caption": " By clicking the 'Register' button you agree to our Privacy Policy and Terms of Service.",
 
   "zipo_aid_investments": "Zipo Aid Investments",
@@ -211,5 +211,8 @@
 
   "review_1": "I was skeptical about an application of lean sigma to fast paced finance, but my doubts are cleared, where there are variables, there are chances for improvement!",
   "review_2": "Well, it was never a secret that you can induce profit growth through process, service chain refinement... kudos to the team! It has been a profitable journey",
-  "review_3": "I especially like the customization for robust portfolios"
+  "review_3": "I especially like the customization for robust portfolios",
+
+  "country": "Country",
+  "region": "Region"
 }
