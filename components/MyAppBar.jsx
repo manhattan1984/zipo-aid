@@ -28,7 +28,7 @@ import React, { useEffect, useRef, useState } from "react";
 // import Menu, { LINKS } from "./Menu";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import Logo from "../public/zipo-aid.png";
+import Logo from "../public/zipo-logo.png";
 import { useAuth } from "../context/AuthContext";
 import { styled } from "@mui/system";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -215,9 +215,9 @@ const MyAppBar = () => {
           <Grid container>
             <Grid item xs={6} md={4}>
               <Link href="/" passHref>
-                <Typography color="primary.main" variant="h4">
-                  {t("app_title")}
-                </Typography>
+                <Box display="flex" height="100%">
+                  <Image src={Logo} height="100%" />
+                </Box>
               </Link>
             </Grid>
             {/* Language */}
