@@ -75,7 +75,8 @@ const Registration = () => {
         passwordRef.current.value,
         firstNameRef.current.value,
         lastNameRef.current.value,
-        userNameRef.current.value
+        userNameRef.current.value,
+        referralRef.current.value
       );
       correct
         ? router.push("/profile") &&

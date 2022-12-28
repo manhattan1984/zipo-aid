@@ -1,3 +1,5 @@
+import { onAuthStateChanged } from "firebase/auth";
+import { arrayUnion, collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { useSnackbar } from "notistack";
 import React, { createContext, useEffect } from "react";
 import { useState } from "react";
@@ -14,6 +16,7 @@ import {
   getUserDetails,
   firebaseResetEmail,
   firebaseSaveSettings,
+  db,
 } from "../backend/firebase";
 
 const AuthContext = createContext();
@@ -58,10 +61,10 @@ export function AuthProvider({ children }) {
       } else {
         console.log("Doc Not Found");
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
-  async function signUp(email, password, firstname, lastname, username) {
+  async function signUp(email, password, firstname, lastname, username, referral) {
     try {
       const userCredential = await firebaseSignUp(email, password);
       await addUserToDatabase(
@@ -70,9 +73,34 @@ export function AuthProvider({ children }) {
         userCredential.user.uid,
         firstname,
         lastname,
-        username
+        username,
       );
+
       setCurrentUser(userCredential.user);
+
+      try {
+        if (referral) {
+
+          const referralQuery = query(collection(db, "users"), where("username", "==", referral))
+
+          const referralQuerySnapshot = await getDocs(referralQuery)
+
+          let uid;
+
+          referralQuerySnapshot.forEach((doc) => {
+            uid = doc.data().uid
+          })
+
+          console.log("uid", uid);
+
+          const referralRef = doc(db, "users", uid)
+          await updateDoc(referralRef, {
+            referrals: arrayUnion(username)
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
       return true;
     } catch (error) {
       console.log(error);
@@ -84,10 +112,16 @@ export function AuthProvider({ children }) {
     return firebaseSaveSettings(uid, data);
   }
 
-  async function logIn(email, password) {
+  function logIn(email, password) {
     try {
-      const userCredential = await firebaseLogIn(email, password);
-      setCurrentUser(userCredential.user);
+      firebaseLogIn(email, password);
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+
+          setCurrentUser(user);
+        }
+      })
       return true;
     } catch (error) {
       console.log(error);
@@ -120,7 +154,7 @@ export function AuthProvider({ children }) {
       } else {
         console.log("Doc Not Found");
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async function getAddresses() {
@@ -137,7 +171,7 @@ export function AuthProvider({ children }) {
       } else {
         console.log("Doc Not Found");
       }
-    } catch (error) {}
+    } catch (error) { }
   }
 
   async function getAuthorized() {
@@ -202,7 +236,7 @@ export function AuthProvider({ children }) {
   async function addWithdrawal(amount, currency, address) {
     try {
       await addWithdrawalToDatabase(getUid(), amount, currency, address);
-    } catch (error) {}
+    } catch (error) { }
   }
 
   useEffect(() => {

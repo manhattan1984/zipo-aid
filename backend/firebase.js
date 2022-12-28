@@ -18,8 +18,9 @@ import {
   sendPasswordResetEmail,
   setPersistence,
   signInWithEmailAndPassword,
-  signOut,
+  signOut
 } from "firebase/auth";
+// import "firebase"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -38,7 +39,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 
 export const auth = getAuth(app);
 
@@ -47,14 +48,9 @@ export function firebaseSignUp(email, password) {
 }
 
 export function firebaseLogIn(email, password) {
-  try {
-    setPersistence(auth, browserSessionPersistence);
-    return signInWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorMessage);
-  }
+
+  setPersistence(auth, browserSessionPersistence).then(() => { return signInWithEmailAndPassword(auth, email, password) }).catch((error) => console.log(error))
+
 }
 
 export function firebaseResetEmail(email) {
@@ -93,7 +89,9 @@ export function addUserToDatabase(
     totalEarned: 0,
   };
   const newUserRef = doc(db, "users", uid);
-  return setDoc(newUserRef, data);
+
+
+  return setDoc(newUserRef, data)
 }
 
 export function firebaseSaveSettings(uid, data) {
