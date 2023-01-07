@@ -23,6 +23,8 @@ import BuyCrypto from "../public/buy-crypto.svg";
 import Image from "next/image";
 import { MarketOverview } from "react-ts-tradingview-widgets";
 import { useTranslation } from "react-i18next";
+import { auth } from "../backend/firebase";
+import Loading from "../components/Loading";
 
 function setActive(router, link) {
   return router.pathname == link ? { borderBottom: 1, borderRadius: 0 } : "";
@@ -45,6 +47,12 @@ const Profile = () => {
     getUsername();
   }, []);
 
+  auth.onAuthStateChanged((user) => {
+    if (!user) {
+      router.push("/signin")
+    }
+  })
+
   async function handleLogOut() {
     setError("");
 
@@ -64,7 +72,7 @@ const Profile = () => {
           {t("hi_welcome")} {username}
         </Typography>
       );
-    } catch (e) {}
+    } catch (e) { }
   }
 
   const toggleMenu = () => {
@@ -79,118 +87,124 @@ const Profile = () => {
 
   return (
     <>
-      <Container>
-        {displayWelcome()}
 
-        <Box width="100%" my={3}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
-              <Paper
-                sx={{
-                  background: "gainsboro",
-                }}
-              >
-                <Box p={3} pb={4} display="flex" justifyContent="space-between">
-                  <Typography variant="body">{t("steps_1")}</Typography>
-                  <SvgIcon component={Done} color="success" />
-                </Box>
-              </Paper>
-            </Grid>
+      {
+        username ?
+          <Container>
+            {displayWelcome()}
 
-            <Grid item xs={12} md={4}>
-              <Paper>
-                <Box display="flex" justifyContent="space-between" p={3}>
-                  <Typography>{t("steps_2")}</Typography>
-                  <Button
-                    size="small"
-                    onClick={() => {
-                      router.push("/investnow");
+            <Box width="100%" my={3}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={4}>
+                  <Paper
+                    sx={{
+                      background: "gainsboro",
                     }}
                   >
-                    {t("steps_2_btn")}
-                  </Button>
-                </Box>
-              </Paper>
-            </Grid>
+                    <Box p={3} pb={4} display="flex" justifyContent="space-between">
+                      <Typography variant="body">{t("steps_1")}</Typography>
+                      <SvgIcon component={Done} color="success" />
+                    </Box>
+                  </Paper>
+                </Grid>
 
-            <Grid item xs={12} md={4}>
-              <Paper>
-                <Box p={3} display="flex" justifyContent="space-between">
-                  <Typography>{t("steps_3")}</Typography>
-                  <Button
-                    size="small"
-                    onClick={() => {
-                      router.push("/protrading");
-                    }}
-                  >
-                    {t("steps_3_btn")}
-                  </Button>
-                </Box>
-              </Paper>
-            </Grid>
-          </Grid>
-        </Box>
+                <Grid item xs={12} md={4}>
+                  <Paper>
+                    <Box display="flex" justifyContent="space-between" p={3}>
+                      <Typography>{t("steps_2")}</Typography>
+                      <Button
+                        size="small"
+                        onClick={() => {
+                          router.push("/investnow");
+                        }}
+                      >
+                        {t("steps_2_btn")}
+                      </Button>
+                    </Box>
+                  </Paper>
+                </Grid>
 
-        <Button
-          onClick={() => {
-            router.push("/dashboard");
-          }}
-        >
-          {t("go_to_dash")}
-        </Button>
+                <Grid item xs={12} md={4}>
+                  <Paper>
+                    <Box p={3} display="flex" justifyContent="space-between">
+                      <Typography>{t("steps_3")}</Typography>
+                      <Button
+                        size="small"
+                        onClick={() => {
+                          router.push("/protrading");
+                        }}
+                      >
+                        {t("steps_3_btn")}
+                      </Button>
+                    </Box>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Box>
 
-        <Box my={2}>
-          <MarketOverview
-            colorTheme="dark"
-            height={400}
-            width="100%"
-            showFloatingTooltip
-          ></MarketOverview>
-        </Box>
+            <Button
+              onClick={() => {
+                router.push("/dashboard");
+              }}
+            >
+              {t("go_to_dash")}
+            </Button>
 
-        <Paper>
-          <Box my={2} p={3}>
-            <Typography my={2}>{t("profile")}</Typography>
-            <Box display="flex">
-              <Box mx={2}>
-                <Avatar>Z</Avatar>
-                <Typography my={2}>${usdBalance}</Typography>
-              </Box>
-              <Box>
-                <Box>
-                  <Typography mb={1} color="GrayText" variant="subtitle2">
-                    {t("account")}
-                  </Typography>
-                  <Typography>{currentUser.email}</Typography>
-                </Box>
-                <Box my={1}>
-                  <Typography color="GrayText" variant="subtitle2">
-                    {t("status")}
-                  </Typography>
+            <Box my={2}>
+              <MarketOverview
+                colorTheme="dark"
+                height={400}
+                width="100%"
+                showFloatingTooltip
+              ></MarketOverview>
+            </Box>
+
+            <Paper>
+              <Box my={2} p={3}>
+                <Typography my={2}>{t("profile")}</Typography>
+                <Box display="flex">
+                  <Box mx={2}>
+                    <Avatar>Z</Avatar>
+                    <Typography my={2}>${usdBalance}</Typography>
+                  </Box>
                   <Box>
-                    <Box display="flex">
-                      <SvgIcon component={CheckCircle} color="success" />
-                      <Typography>{t("zipo_starter")}</Typography>
+                    <Box>
+                      <Typography mb={1} color="GrayText" variant="subtitle2">
+                        {t("account")}
+                      </Typography>
+                      <Typography>{currentUser?.email}</Typography>
                     </Box>
-                    <Box display="flex">
-                      <SvgIcon component={Cancel} color="error" />
-                      <Typography>{t("zipo_user")}</Typography>
-                    </Box>
-                    <Box display="flex">
-                      <SvgIcon component={Cancel} color="error" />
-                      <Typography>{t("zipo_vip")}</Typography>
+                    <Box my={1}>
+                      <Typography color="GrayText" variant="subtitle2">
+                        {t("status")}
+                      </Typography>
+                      <Box>
+                        <Box display="flex">
+                          <SvgIcon component={CheckCircle} color="success" />
+                          <Typography>{t("zipo_starter")}</Typography>
+                        </Box>
+                        <Box display="flex">
+                          <SvgIcon component={Cancel} color="error" />
+                          <Typography>{t("zipo_user")}</Typography>
+                        </Box>
+                        <Box display="flex">
+                          <SvgIcon component={Cancel} color="error" />
+                          <Typography>{t("zipo_vip")}</Typography>
+                        </Box>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
+                <Box>
+                  {/* <Button>Settings</Button> */}
+                  <Button onClick={handleLogOut}>{t("log_out")}</Button>
+                </Box>
               </Box>
-            </Box>
-            <Box>
-              {/* <Button>Settings</Button> */}
-              <Button onClick={handleLogOut}>{t("log_out")}</Button>
-            </Box>
-          </Box>
-        </Paper>
-      </Container>
+            </Paper>
+          </Container> : <Loading />
+      }
+
+
     </>
   );
 };
