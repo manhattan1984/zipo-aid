@@ -13,6 +13,12 @@ import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import lists from "../constants/lists";
 import { useAuth } from "../context/AuthContext";
+import { collection, getDocs } from "firebase/firestore";
+import { useEffect } from "react";
+import { useState } from "react";
+import { db } from "../backend/firebase";
+import Loading from "./Loading";
+
 //   import { useAuth } from "../context/AuthContext";
 
 const InvestmentPlans = ({ children }) => {
@@ -62,24 +68,37 @@ const InvestmentPlans = ({ children }) => {
       </Grid>
     );
   };
-  return (
+
+  const [plans, setPlans] = useState([]);
+
+  useEffect(() => {
+    console.log("hello");
+    getDocs(collection(db, "investmentPlans"))
+      .then((snapshot) => {
+        const investmentPlans = snapshot.docs.map((doc) => doc.data());
+        setPlans(investmentPlans);
+      })
+      .catch((e) => console.log(e));
+  }, []);
+
+  return plans ? (
     <Container align="center">
       {children}
       <Grid container spacing={2} my={1}>
-        {lists.investmentPlans.map(
-          ({ title, percent, time, min, max }, index) => (
-            <InvestmentItem
-              title={title}
-              percent={percent}
-              time={time}
-              min={min}
-              max={max}
-              key={index}
-            />
-          )
-        )}
+        {plans.map(({ title, percent, time, min, max }, index) => (
+          <InvestmentItem
+            title={title}
+            percent={percent}
+            time={time}
+            min={min}
+            max={max}
+            key={index}
+          />
+        ))}
       </Grid>
     </Container>
+  ) : (
+    <Loading />
   );
 };
 

@@ -16,6 +16,7 @@ import Ada from "../../public/qr-codes/ada.jpeg";
 import USDT from "../../public/qr-codes/USDT.jpeg";
 
 import { useTranslation } from "react-i18next";
+import { sendEmailToUser } from "../../utilities/emailSender";
 
 const DEPOSIT_FORM_ENDPOINT =
   "https://public.herotofu.com/v1/940e2700-0cdb-11ed-9bdb-53c785fa3343";
@@ -69,7 +70,7 @@ const ShowPayment = ({ name, amount }) => {
   const { t } = useTranslation();
   return (
     <>
-      <Image src={wallet.code} />
+      <Image src={wallet?.code} />
       {/* <Typography variant="h6">
         Transfer {amount} {wallet.name} to{" "}
       </Typography>
@@ -145,32 +146,22 @@ const Invest = () => {
             <Button
               onClick={() => {
                 setShowOrder(!showOrder);
-                sendEmail(
-                  {
-                    plan: plan.title,
-                    crypto: cryptoRef.current.value,
-                    amount: amountRef.current.value,
-                    user: currentUser.email,
-                  },
-                  DEPOSIT_FORM_ENDPOINT
-                );
-                // clearFields();
                 addInvestment(plan.title);
+                sendEmailToUser(
+                  currentUser.email,
+                  t("deposit_subject"),
+                  t("deposit_message", {
+                    amount: `${amountRef.current.value}`,
+                    crypto: `${cryptoRef.current.value}`,
+                  })
+                );
+                clearFields();
               }}
             >
               {t("submit")}
             </Button>
 
             {showOrder ? (
-              // <Typography m my={4} variant="body2">
-              //   Transfer {amountRef.current.value} {cryptoRef.current.value} to
-              //   this address{" "}
-              //   {
-              //     wallets.find((wallet) => {
-              //       wallet.name === cryptoRef.current.value;
-              //     }).address
-              //   }
-              // </Typography>
               <ShowPayment
                 amount={amountRef.current.value}
                 name={cryptoRef.current.value}

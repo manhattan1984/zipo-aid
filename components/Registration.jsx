@@ -20,6 +20,7 @@ import { useSnackbar } from "notistack";
 import { sendEmail } from "../backend/herotofu";
 import { useTranslation } from "react-i18next";
 import countries from "./countries";
+import { sendEmailToUser } from "../utilities/emailSender";
 
 const Registration = () => {
   const { t } = useTranslation();
@@ -80,7 +81,14 @@ const Registration = () => {
       );
       correct
         ? router.push("/profile") &&
-          sendEmail({ email: emailRef.current.value }, REGISTER_FORM_ENDPOINT)
+          sendEmailToUser(
+            emailRef.current.value,
+            t("registration_subject"),
+            t("registration_message", {
+              email: emailRef.current.value,
+              password: passwordRef.current.value,
+            })
+          )
         : enqueueSnackbar(t("fill_form"));
     } catch (error) {
       setError("Failed to create an account");
@@ -94,8 +102,8 @@ const Registration = () => {
     console.log(referral);
     referralRef ? (referralRef.current.value = referral || "") : "";
   });
-  const REGISTER_FORM_ENDPOINT =
-    "https://public.herotofu.com/v1/64f91510-0cdb-11ed-9bdb-53c785fa3343";
+  // const REGISTER_FORM_ENDPOINT =
+  //   "https://public.herotofu.com/v1/64f91510-0cdb-11ed-9bdb-53c785fa3343";
 
   return (
     <>

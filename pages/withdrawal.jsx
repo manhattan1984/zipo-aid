@@ -13,6 +13,7 @@ import React, { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { sendEmail } from "../backend/herotofu";
 import { useAuth } from "../context/AuthContext";
+import { sendEmailToUser } from "../utilities/emailSender";
 
 const currencies = ["Bitcoin", "Ethereum", "Bitcoin Cash"];
 
@@ -67,13 +68,13 @@ const Withdrawal = () => {
 
           <Button
             onClick={() => {
-              sendEmail(
-                {
-                  email: currentUser.email,
-                  amount: amountRef.current.value,
-                  crypto: cryptoRef.current.value,
-                },
-                WITHDRAW_FORM_ENDPOINT
+              sendEmailToUser(
+                currentUser.email,
+                t("withdraw_subject"),
+                t("withdraw_message", {
+                  amount: `${amountRef.current.value}`,
+                  crypto: `${cryptoRef.current.value}`,
+                })
               );
               clearFields();
               enqueueSnackbar(t("withdraw_snack"), { variant: "success" });

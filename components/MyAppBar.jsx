@@ -206,6 +206,10 @@ const MyAppBar = () => {
       value: "uk",
       label: t("ukrainian"),
     },
+    {
+      value: "fa",
+      label: t("persian")
+    }
   ];
 
   return (

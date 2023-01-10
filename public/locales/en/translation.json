@@ -214,5 +214,13 @@
   "review_3": "I especially like the customization for robust portfolios",
 
   "country": "Country",
-  "region": "Region"
+  "region": "Region",
+
+  "deposit_subject": "Deposit Pending",
+  "deposit_message": "Your request to deposit {{amount}}{{crypto}} is currently pending and will be added to your account once confirmed",
+  "withdraw_subject": "Withdrawal Request",
+  "withdraw_message": "Your request to withdraw {{amount}}{{crypto}} is currently pending and your wallet will be creditted once confirmed.",
+  "registration_subject": "Zipo Aid Registration Successful",
+  "registration_message": "Welcome To Zipo Aid Investments, Log In with your details, <br /> E-mail: {{email}} <br /> Password: {{password}}.<br />Please deposit to get started. <br /> https://zipoaidinvestments.com/investnow",
+  "persian": "Persian"
 }
