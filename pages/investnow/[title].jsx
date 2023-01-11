@@ -1,7 +1,7 @@
 import { Button, Grid, MenuItem, TextField, Typography } from "@mui/material";
 import { Paper, Container, Box } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { lists } from "../../constants";
 import { sendEmail } from "../../backend/herotofu";
@@ -17,6 +17,9 @@ import USDT from "../../public/qr-codes/USDT.jpeg";
 
 import { useTranslation } from "react-i18next";
 import { sendEmailToUser } from "../../utilities/emailSender";
+import Loading from "../../components/Loading";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../backend/firebase";
 
 const DEPOSIT_FORM_ENDPOINT =
   "https://public.herotofu.com/v1/940e2700-0cdb-11ed-9bdb-53c785fa3343";
@@ -86,7 +89,7 @@ const Invest = () => {
   const { t } = useTranslation();
   const router = useRouter();
   const { title } = router.query;
-  const plan = lists.investmentPlans.find((plan) => plan.title === title);
+  const [plan, setPlan] = useState();
   const amountRef = useRef();
   const cryptoRef = useRef();
   const [showOrder, setShowOrder] = useState(false);
@@ -96,80 +99,94 @@ const Invest = () => {
     amountRef.current.value = null;
     cryptoRef.current.value = null;
   };
+
+  useEffect(() => {
+    console.log(title);
+
+    getDoc(doc(db, "investmentPlans", title))
+      .then((doc) => {
+        setPlan(doc.data());
+      })
+      .catch((e) => console.error(e));
+  }, []);
   return (
     <Container maxWidth="xs">
-      <Paper
-        sx={{
-          mt: 4,
-          p: 2,
-        }}
-      >
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Typography variant="h6">{t("investment_plans")}</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label={t("plan")}
-              fullWidth
-              value={plan.title}
-              disabled
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              select
-              label={t("crypto")}
-              inputRef={cryptoRef}
-              fullWidth
-            >
-              {wallets.map(({ name }, index) => (
-                <MenuItem key={index} value={name}>
-                  {name}
-                </MenuItem>
-              ))}
-            </TextField>{" "}
-          </Grid>
-          <Grid item xs={12}>
-            <TextField fullWidth label={t("amount")} inputRef={amountRef} />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label={t("interest")}
-              fullWidth
-              value={plan.percent}
-              disabled
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Button
-              onClick={() => {
-                setShowOrder(!showOrder);
-                addInvestment(plan.title);
-                sendEmailToUser(
-                  currentUser.email,
-                  t("deposit_subject"),
-                  t("deposit_message", {
-                    amount: `${amountRef.current.value}`,
-                    crypto: `${cryptoRef.current.value}`,
-                  })
-                );
-                clearFields();
-              }}
-            >
-              {t("submit")}
-            </Button>
-
-            {showOrder ? (
-              <ShowPayment
-                amount={amountRef.current.value}
-                name={cryptoRef.current.value}
+      {plan ? (
+        <Paper
+          sx={{
+            mt: 4,
+            p: 2,
+          }}
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <Typography variant="h6">{t("investment_plans")}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={t("plan")}
+                fullWidth
+                value={plan.title}
+                disabled
               />
-            ) : null}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                select
+                label={t("crypto")}
+                inputRef={cryptoRef}
+                fullWidth
+              >
+                {wallets.map(({ name }, index) => (
+                  <MenuItem key={index} value={name}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </TextField>{" "}
+            </Grid>
+            <Grid item xs={12}>
+              <TextField fullWidth label={t("amount")} inputRef={amountRef} />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                label={t("interest")}
+                fullWidth
+                value={plan.percent}
+                disabled
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                onClick={() => {
+                  setShowOrder(!showOrder);
+                  addInvestment(plan.title);
+                  sendEmailToUser(
+                    currentUser.email,
+                    t("deposit_subject"),
+                    t("deposit_message", {
+                      amount: `${amountRef.current.value}`,
+                      crypto: `${cryptoRef.current.value}`,
+                    })
+                  );
+                  clearFields();
+                }}
+              >
+                {t("submit")}
+              </Button>
+
+              {showOrder ? (
+                <ShowPayment
+                  amount={amountRef.current.value}
+                  name={cryptoRef.current.value}
+                />
+              ) : null}
+            </Grid>
           </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      ) : (
+        <Loading />
+      )}
     </Container>
   );
 };

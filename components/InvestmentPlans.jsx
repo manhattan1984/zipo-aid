@@ -22,7 +22,7 @@ import Loading from "./Loading";
 //   import { useAuth } from "../context/AuthContext";
 
 const InvestmentPlans = ({ children }) => {
-  const InvestmentItem = ({ title, percent, time, min, max }) => {
+  const InvestmentItem = ({ id, title, percent, time, min, max }) => {
     //   const { addInvestment } = useAuth();
     const router = useRouter();
     const { currentUser } = useAuth();
@@ -35,7 +35,9 @@ const InvestmentPlans = ({ children }) => {
       if (!currentUser) {
         return router.push("/register");
       }
-      router.push({ pathname: "/investnow/[title]", query: { title } });
+
+      console.log("id", id);
+      router.push({ pathname: "/investnow/[title]", query: { title: id } });
     };
 
     return (
@@ -75,18 +77,25 @@ const InvestmentPlans = ({ children }) => {
     console.log("hello");
     getDocs(collection(db, "investmentPlans"))
       .then((snapshot) => {
-        const investmentPlans = snapshot.docs.map((doc) => doc.data());
+        const investmentPlans = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setPlans(investmentPlans);
+        console.log("plans", plans);
       })
       .catch((e) => console.log(e));
+
+    console.log(plans);
   }, []);
 
   return plans ? (
     <Container align="center">
       {children}
       <Grid container spacing={2} my={1}>
-        {plans.map(({ title, percent, time, min, max }, index) => (
+        {plans.map(({ id, title, percent, time, min, max }, index) => (
           <InvestmentItem
+            id={id}
             title={title}
             percent={percent}
             time={time}
