@@ -37,7 +37,7 @@ const InvestmentPlans = ({ children }) => {
       }
 
       console.log("id", id);
-      router.push({ pathname: "/investnow/[title]", query: { title: id } });
+      router.push({ pathname: "/investnow/[title]", query: { title } });
     };
 
     return (
