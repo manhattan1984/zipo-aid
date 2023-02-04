@@ -119,6 +119,24 @@ export default function Home() {
         }}>
           {getAlertText()}
         </Alert> : null}
+
+        <div className="bg-neutral-890 text-white flex flex-col gap-2 py-8 px-2">
+        <div className="flex justify-between">
+          <p className="text-xl">Trusted Site</p>
+        </div>
+        <div className="">
+          <p className="text-3xl">Earn your visitors' trust</p>
+          <p className="text-gray-300">
+            Address the security and trust concerns that cost you sales and
+            convert more customers at every stage of the buyer's journey with
+            TrustedSite's earned certification program.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <button className="p-2 w-full bg-green-600">Get Certified</button>
+          <button className="p-2 w-full bg-neutral-700">watch the video</button>
+        </div>
+      </div>
         <Grid container>
           <Grid item xs={12} md={6} color="white" m={2}>
             <Typography variant="h5">{t("hero_1")}</Typography>
@@ -153,6 +171,8 @@ export default function Home() {
           </Grid>
         </Grid>
       </Box>
+
+      
 
       <Box
         textAlign="center"
